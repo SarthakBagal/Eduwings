@@ -17,10 +17,10 @@ for (let i = currentYear - 3; i <= currentYear + 3; i++) {
 }
 
 // login submit
-document.getElementById("loginForm").addEventListener("submit", function (e) {
-  e.preventDefault();
+// document.getElementById("loginForm").addEventListener("submit", function (e) {
+//   e.preventDefault();
 
 
-  const selectedYear = yearSelect.value;
-  alert("Login Succefull \n Selected Academic Year: " + selectedYear);
-});
+//   const selectedYear = yearSelect.value;
+//   alert("Login Succefull \n Selected Academic Year: " + selectedYear);
+// });
