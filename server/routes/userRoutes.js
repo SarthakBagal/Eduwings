@@ -10,7 +10,7 @@ router.put("/profile", protect, updateMe);
 
 router.get("/dashboard", protect, (req, res) => {
   res.sendFile(
-    path.join(__dirname, "../Frontend/dashboard.html")
+    path.join(__dirname, "../views/dashboard.html")
   );
 });
 
