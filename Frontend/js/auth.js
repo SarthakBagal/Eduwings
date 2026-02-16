@@ -55,7 +55,7 @@ if (loginForm) {
 
 
         setTimeout(() => {
-          window.location.href = "dashboard.html";
+          window.location.href = `${API_BASE_URL}/dashboard`;
         }, 800);
       } else {
         message.style.color = "red";

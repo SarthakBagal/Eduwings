@@ -10,7 +10,7 @@ import {
 
 const router = express.Router();
 
-router.get("/dashboard", protect, authorize("admin"), getDashboardStats);
+// router.get("/dashboard", protect, authorize("admin"), getDashboardStats);
 router.get("/users", protect, authorize("admin"), getAllUsers);
 router.put("/users/:id/status", protect, authorize("admin"), toggleUserStatus);
 router.put("/users/:id/promote", protect, authorize("admin"), promoteToAdmin);

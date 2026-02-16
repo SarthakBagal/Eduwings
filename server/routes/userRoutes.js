@@ -8,11 +8,6 @@ const router = express.Router();
 router.get("/profile", protect, getMe);
 router.put("/profile", protect, updateMe);
 
-router.get("/dashboard", protect, (req, res) => {
-  res.sendFile(
-    path.join(__dirname, "../views/dashboard.html")
-  );
-});
 
 export default router;
 
