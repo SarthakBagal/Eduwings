@@ -16,12 +16,12 @@ router.post("/register",  [ body("name").notEmpty().withMessage("Name is require
 
 router.post("/login",  [ body("name").notEmpty().withMessage("Name is required"), body("password").notEmpty() .withMessage("Password is required"), validate, ], login);
 
-router.get("/profile", protect, (req, res) => {
-  res.json({
-    message: "Authorized",
-    user: req.user,
-  });
-});
+// router.get("/profile", protect, (req, res) => {
+//   res.json({
+//     message: "Authorized",
+//     user: req.user,
+//   });
+// });
 
 router.get("/dashboard", protect, (req, res) => {
   res.sendFile(

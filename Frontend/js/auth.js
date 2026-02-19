@@ -42,13 +42,13 @@ if (loginForm) {
         headers: {
           "Content-Type": "application/json"
         },
+        credentials: "include",
         body: JSON.stringify({ name, password, year })
       });
 
       const data = await res.json();
 
       if (res.ok) {
-        localStorage.setItem("token", data.token);
         message.style.color = "green";
         message.innerText = "Login successful ✅";
         // window.location.href = "dashboard.html";

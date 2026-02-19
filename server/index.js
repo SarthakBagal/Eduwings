@@ -6,6 +6,7 @@ import helmet from "helmet";
 import { connectDb } from "./database/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import cookieParser from 'cookie-parser';
 
 import { fileURLToPath } from "url";
 import { dirname } from "path";
@@ -26,15 +27,13 @@ connectDb();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static(path.join(__dirname, "public")));
-
 app.use(
   cors({
-    origin: "*", // change to frontend URL in production
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"]
+    origin: "http://localhost:5500", // change to frontend URL in production
+    credentials: true
   })
 );
+app.use(cookieParser());
 
 app.use(
   helmet({
@@ -42,10 +41,13 @@ app.use(
   })
 );
 //static file
+app.use(express.static(path.join(__dirname, "public")));
 app.use(
   "/uploads",
   express.static(path.join(process.cwd(), "uploads"))
 );
+
+
 
 //route
 app.use("/api/auth", authRoutes);
