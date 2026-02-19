@@ -1,7 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import path from "path";
-import cors from "cors";
 import helmet from "helmet";
 import { connectDb } from "./database/db.js";
 import authRoutes from "./routes/authRoutes.js";
@@ -27,12 +26,7 @@ connectDb();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(
-  cors({
-    origin: "http://localhost:5500", // change to frontend URL in production
-    credentials: true
-  })
-);
+
 app.use(cookieParser());
 
 app.use(
