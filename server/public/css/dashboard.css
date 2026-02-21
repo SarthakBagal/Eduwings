@@ -18,6 +18,19 @@ body {
   gap: 20px;
 }
 
+.topbar-right {
+  flex: 1;
+  color: white;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 50px;
+}
+.logoutBtn{
+  border-radius: 10% ;
+  width: 100px;
+  height: 40px;
+}
 /* Layout */
 .container {
   display: flex;
@@ -149,10 +162,3 @@ body {
 }
 
 /* Remaining space */
-.topbar-right {
-  flex: 1;
-  background: #3b82b5;
-  color: white;
-  display: flex;
-  align-items: center;
-}

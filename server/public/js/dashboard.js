@@ -1,22 +1,39 @@
+console.log("Script is connected and running!");
+
 const token = localStorage.getItem("token");
 
-if (!token) {
-  // not logged in → kick back to login
-  window.location.href = "login.html";
-}
+const logoutBtn = document.getElementById("logoutBtn");
 
-document.getElementById("logoutBtn").addEventListener("click", () => {
-  localStorage.removeItem("token");
-  window.location.href = "login.html";
-});
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", async () => {
+    try {
+      const res = await fetch("/api/auth/logout", {
+        method: "POST"
+      });
 
-function toggleMenu(element) {
-  const menuItem = element.parentElement;
+      if (res.ok) {
+        // Redirect to login page
+        window.location.href = "/login.html";
+      } else {
+        alert("Logout failed");
+      }
 
-  // Close other open menus (optional)
-  document.querySelectorAll('.menu-item').forEach(item => {
-    if (item !== menuItem) item.classList.remove('open');
+    } catch (error) {
+      alert("Server error");
+    }
   });
-
-  menuItem.classList.toggle('open');
 }
+
+document.querySelectorAll(".menu-header").forEach(header => {
+  header.addEventListener("click", function () {
+
+    const menuItem = this.parentElement;
+
+    // Close other open menus (optional)
+    document.querySelectorAll(".menu-item").forEach(item => {
+      if (item !== menuItem) item.classList.remove("open");
+    });
+
+    menuItem.classList.toggle("open");
+  });
+});

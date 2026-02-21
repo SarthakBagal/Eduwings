@@ -30,8 +30,33 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use(
-  helmet({
-    crossOriginResourcePolicy: false
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+
+      styleSrc: [
+        "'self'",
+        "https://cdn.jsdelivr.net",
+        "https://cdnjs.cloudflare.com",
+        "https://fonts.googleapis.com"
+      ],
+
+      fontSrc: [
+        "'self'",
+        "https://fonts.gstatic.com",
+        "https://cdnjs.cloudflare.com"
+      ],
+
+      scriptSrc: [
+        "'self'",
+        "https://cdn.jsdelivr.net"
+      ],
+
+      connectSrc: [
+        "'self'",
+        "https://cdn.jsdelivr.net"
+      ]
+    }
   })
 );
 //static file

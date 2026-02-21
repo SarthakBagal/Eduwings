@@ -13,29 +13,6 @@
 
 <body>
 
-<script>
-  const token = localStorage.getItem("token");
-
-  if (!token) {
-    window.location.href = "/login.html";
-  } else {
-    fetch("/api/users/profile", {
-      headers: {
-        Authorization: "Bearer " + token
-      }
-    })
-    .then(res => {
-      if (!res.ok) {
-        localStorage.removeItem("token");
-        window.location.href = "/login.html";
-      }
-    })
-    .catch(() => {
-      window.location.href = "/login.html";
-    });
-  }
-</script>
-
     <!-- TOP BAR -->
     <header class="topbar">
   <div class="topbar-left">
@@ -44,7 +21,7 @@
   </div>
 
   <div class="topbar-right">
-    <!-- Right side content -->
+    <button class="logoutBtn" id="logoutBtn">Logout</button>
   </div>
 </header>
 
@@ -61,8 +38,8 @@
             <option value="dashboard">Dashboard</option>
 
 
-            <div class="menu-item">
-                <div class="menu-header" onclick="toggleMenu(this)">
+            <div class="menu-item" id="menu-item">
+                <div class="menu-header">
                     <div class="menu-left">
                         <i class="fa fa-chart-pie"></i>
                         <span>Enquiry</span>
@@ -97,7 +74,7 @@
 
     </div>
 
-    <script src="/server/public/js/dashboard.js"></script>
+    <script src="/js/dashboard.js"></script>
 </body>
 
 </html>
