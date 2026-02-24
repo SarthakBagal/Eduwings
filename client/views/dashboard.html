@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+  <div class="topbar-left">
+    <i class="fa fa-bars"></i>
+    <span class="brand">Ecampus</span>
+  </div>
+
+  <div class="topbar-right">
+    <button class="logoutBtn" id="logoutBtn">Logout</button>
+  </div>
+</header>
+
+
+    <div class="container">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="profile">
+                <p>Welcome, <b>superadmin</b></p>
+                <span class="online">Online</span>
+            </div>
+
+            <option value="dashboard">Dashboard</option>
+
+
+            <div class="menu-item" id="menu-item">
+                <div class="menu-header">
+                    <div class="menu-left">
+                        <i class="fa fa-chart-pie"></i>
+                        <span>Enquiry</span>
+                    </div>
+                    <i class="fa fa-chevron-right arrow"></i>
+                </div>
+
+                <div class="submenu">
+                    <div class="submenu-item">Add Enquiry</div>
+                    <div class="submenu-item">View Enquiry</div>
+                </div>
+            </div>
+            <li><i class="fa fa-lock"></i> Forgot Password</li>
+            </ul>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="content">
+            <h2>Dashboard</h2>
+
+            <div class="cards">
+                <div class="card blue">Total Admission <h1>53</h1>
+                </div>
+                <div class="card green">Total Prospectus <h1>53</h1>
+                </div>
+                <div class="card orange">Total Enquiry <h1>53</h1>
+                </div>
+                <div class="card red">Fees Collection <h1>0</h1>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <script src="../js/dashboard.js"></script>
+</body>
+
+</html>
