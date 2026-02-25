@@ -1,80 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <title>ECampus Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="../css/dashboard.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-</head>
 
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="/Frontend/css/dashboard.css">
+</head>
 <body>
 
-    <!-- TOP BAR -->
-    <header class="topbar">
-  <div class="topbar-left">
-    <i class="fa fa-bars"></i>
-    <span class="brand">Ecampus</span>
-  </div>
-
-  <div class="topbar-right">
-    <button class="logoutBtn" id="logoutBtn">Logout</button>
-  </div>
-</header>
-
-
-    <div class="container">
-
-        <!-- SIDEBAR -->
-        <aside class="sidebar">
-            <div class="profile">
-                <p>Welcome, <b>superadmin</b></p>
-                <span class="online">Online</span>
-            </div>
-
-            <option value="dashboard">Dashboard</option>
-
-
-            <div class="menu-item" id="menu-item">
-                <div class="menu-header">
-                    <div class="menu-left">
-                        <i class="fa fa-chart-pie"></i>
-                        <span>Enquiry</span>
-                    </div>
-                    <i class="fa fa-chevron-right arrow"></i>
-                </div>
-
-                <div class="submenu">
-                    <div class="submenu-item">Add Enquiry</div>
-                    <div class="submenu-item">View Enquiry</div>
-                </div>
-            </div>
-            <li><i class="fa fa-lock"></i> Forgot Password</li>
-            </ul>
-        </aside>
-
-        <!-- MAIN CONTENT -->
-        <main class="content">
-            <h2>Dashboard</h2>
-
-            <div class="cards">
-                <div class="card blue">Total Admission <h1>53</h1>
-                </div>
-                <div class="card green">Total Prospectus <h1>53</h1>
-                </div>
-                <div class="card orange">Total Enquiry <h1>53</h1>
-                </div>
-                <div class="card red">Fees Collection <h1>0</h1>
-                </div>
-            </div>
-        </main>
-
+<!-- ================= SIDEBAR ================= -->
+<div class="sidebar" id="sidebar">
+    <div class="profile">
+        <img src="/Frontend/img/Eduwings_new (1).png" alt="admin">
+        <div class="profile-text">
+            <h4>Welcome,<br> superadmin</h4>
+            <p><span class="online-dot"></span> Online</p>
+        </div>
     </div>
 
-    <script src="../js/dashboard.js"></script>
-</body>
+    <ul class="menu">
+        <li class="menu-item active">
+            <i class="fa fa-home"></i> Dashboard
+            <span class="badge-new">NEW</span>
+        </li>
 
+        <li class="sidebar-search">
+            <input type="text" placeholder="Search...">
+            <i class="fas fa-search"></i>
+        </li>
+
+        <li class="menu-title">Marketing</li>
+        <li class="submenu-item"><i class="fa fa-bullhorn"></i> Enquiry</li>
+
+        <li class="menu-title">Academics</li>
+        <li class="submenu-item"><i class="fa fa-user-graduate"></i> Admission</li>
+        <li class="submenu-item"><i class="fas fa-indian-rupee-sign"></i> Fees</li>
+        <li class="submenu-item"><i class="fa fa-certificate"></i> Student Certificates</li>
+
+        <li class="menu-title">Administrator</li>
+        <li class="submenu-item"><i class="fa fa-users"></i> User Management</li>
+        <li class="submenu-item"><i class="fa fa-user-shield"></i> Administrator</li>
+
+        <li class="menu-title">Forgot Password</li>
+        <li class="submenu-item"><i class="fa fa-key"></i> Forgot Password</li>
+        <li class="submenu-item"><i class="fa fa-phone"></i> Contact Support</li>
+    </ul>
+</div>
+
+<!-- ================= TOPBAR ================= -->
+<div class="topbar">
+    <div class="left-section">
+        <i class="fa fa-bars menu-toggle" onclick="toggleSidebar()"></i>
+        <div class="academic-year">
+            Academic Year :
+            <select>
+                <option>2026-2027</option>
+                <option>2025-2026</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="right-section">
+        <span>superadmin</span>
+        <i class="fa fa-power-off"></i>
+        <i class="fa fa-cog"></i>
+    </div>
+</div>
+
+<!-- ================= MAIN CONTENT ================= -->
+<div class="main-content">
+    <h1>Dashboard</h1>
+
+    <!-- ===== TOP 4 CARDS ===== -->
+    <div class="cards">
+
+        <div class="card blue">
+            <div class="card-content">
+                <h2>53</h2>
+                <p>Total Admission</p>
+            </div>
+            <div class="card-icon">
+                <i class="fas fa-user-graduate"></i>
+            </div>
+            <div class="card-footer">
+                More info <i class="fas fa-arrow-circle-right"></i>
+            </div>
+        </div>
+
+        <div class="card green">
+            <div class="card-content">
+                <h2>40</h2>
+                <p>Total Enquiry</p>
+            </div>
+            <div class="card-icon">
+                <i class="fas fa-bullhorn"></i>
+            </div>
+            <div class="card-footer">
+                More info <i class="fas fa-arrow-circle-right"></i>
+            </div>
+        </div>
+
+        <div class="card orange">
+            <div class="card-content">
+                <h2>₹ 1,25,000</h2>
+                <p>Total Fees</p>
+            </div>
+            <div class="card-icon">
+                <i class="fas fa-indian-rupee-sign"></i>
+            </div>
+            <div class="card-footer">
+                More info <i class="fas fa-arrow-circle-right"></i>
+            </div>
+        </div>
+
+        <div class="card red">
+            <div class="card-content">
+                <h2>120</h2>
+                <p>Total Student</p>
+            </div>
+            <div class="card-icon">
+                <i class="fas fa-users"></i>
+            </div>
+            <div class="card-footer">
+                More info <i class="fas fa-arrow-circle-right"></i>
+            </div>
+        </div>
+
+    </div> <!-- ✅ CLOSED .cards HERE -->
+
+<!-- ===== MIDDLE SECTION ===== -->
+<div class="middle-section">
+
+    <!-- LEFT SIDE -->
+    <div class="side-cards">
+        <div class="small-card azure">
+            <div>Student Search</div>
+            <div class="card-badge">
+                More Info <i class="fas fa-arrow-circle-right"></i>
+            </div>
+        </div>
+
+        <div class="small-card teal">
+            <div>Daily Attendance</div>
+            <div class="card-badge">
+                More Info <i class="fas fa-arrow-circle-right"></i>
+            </div>
+        </div>
+
+        <!-- Download Btn -->
+         <div class="download-btn-container-left">
+        <button class="download-btn">
+            <i class="fas fa-download"></i> Download Database Backup
+        </button>
+    </div>
+    </div>
+
+    <!-- CENTER BANNER -->
+    <div class="center-banner">
+        <img src="/Frontend/img/logo.banner.png" alt="">
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="side-cards">
+        <div class="small-card pink">
+            <div>Add New Student</div>
+            <div class="card-badge">
+                More Info <i class="fas fa-arrow-circle-right"></i>
+            </div>
+        </div>
+
+        <div class="small-card purple">
+            <div>Create User</div>
+            <div class="card-badge">
+                More Info <i class="fas fa-arrow-circle-right"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    Copyright © E Campus by India active Software Inc 2026.
+</div>
+
+</div> <!-- main-content -->
+
+<script src="script.js"></script>
+</body>
 </html>
