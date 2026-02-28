@@ -54,7 +54,7 @@ if (loginForm) {
         // Redirect to protected dashboard
         setTimeout(() => {
           window.location.href = "../views/dashboard.html";
-        }, 800);
+        }, 500);
 
       } else {
         message.style.color = "red";

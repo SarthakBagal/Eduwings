@@ -15,12 +15,3 @@ for (let i = currentYear - 3; i <= currentYear + 3; i++) {
 
   yearSelect.appendChild(option);
 }
-
-// login submit
-// document.getElementById("loginForm").addEventListener("submit", function (e) {
-//   e.preventDefault();
-
-
-//   const selectedYear = yearSelect.value;
-//   alert("Login Succefull \n Selected Academic Year: " + selectedYear);
-// });

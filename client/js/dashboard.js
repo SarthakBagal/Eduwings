@@ -23,6 +23,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 const logoutBtn = document.getElementById("logoutBtn");
 
 if (logoutBtn) {
+  console.log("Logout")
   logoutBtn.addEventListener("click", async () => {
     try {
       const res = await fetch("http://localhost:5000/api/auth/logout", {

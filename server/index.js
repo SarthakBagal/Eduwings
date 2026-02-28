@@ -7,6 +7,7 @@ import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
+import enquiryRoutes from "./routes/enquiryRoutes.js";
 
 import { fileURLToPath } from "url";
 import { dirname } from "path";
@@ -62,7 +63,7 @@ app.use(
   })
 );
 //static file
-// app.use(express.static(path.join(__dirname, "../public")));
+app.use(express.static(path.join(__dirname, "../client")));
 app.use(
   "/uploads",
   express.static(path.join(process.cwd(), "uploads"))
@@ -70,7 +71,7 @@ app.use(
 
 
 app.use(cors({
-  origin: "http://localhost:5500",  // or your frontend port
+  origin: "http://localhost:5000",  // or your frontend port
   credentials: true
 }));
 
@@ -78,8 +79,7 @@ app.use(cors({
 //route
 app.use("/api/auth", authRoutes);
 app.use("/api/users",userRoutes);
-
-
+app.use("/api/enquiries", enquiryRoutes);
 
 app.get('/',(req,res)=>{
     res.send("server is working");
