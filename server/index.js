@@ -5,12 +5,18 @@ import helmet from "helmet";
 import { connectDb } from "./database/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import createUserRoutes from "./routes/createUserRoutes.js";
+import addmissionEnquiryRoutes from "./routes/addmissionEnquiryRoutes.js";
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
-import enquiryRoutes from "./routes/enquiryRoutes.js";
+import studentEnquiryRoutes from "./routes/studentEnquiryRoutes.js";
+import leavingCertificateRoutes from "./routes/leavingCertificateRoutes.js";
+import bonafiedCertificateRoutes from "./routes/bonafiedCertificateRoutes.js";
+import forgotPasswordRoutes from "./routes/forgotPasswordRoutes.js"
 
 import { fileURLToPath } from "url";
 import { dirname } from "path";
+import AddmissionEnquiry from './models/AddmissionEnquiry.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -79,7 +85,14 @@ app.use(cors({
 //route
 app.use("/api/auth", authRoutes);
 app.use("/api/users",userRoutes);
-app.use("/api/enquiries", enquiryRoutes);
+
+app.use("/api/student-enquiries", studentEnquiryRoutes);
+app.use("/api/addmission-enquiries", addmissionEnquiryRoutes);
+
+app.use("/api/createUsers",createUserRoutes);
+app.use("/api", leavingCertificateRoutes)
+app.use("/api", bonafiedCertificateRoutes)
+app.use("/api", forgotPasswordRoutes)
 
 app.get('/',(req,res)=>{
     res.send("server is working");

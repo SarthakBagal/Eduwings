@@ -20,6 +20,15 @@ window.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
+async function loadEnquiryCount() {
+  const res = await fetch("http://localhost:5000/api/enquiries/count");
+  const data = await res.json();
+
+  document.getElementById("totalEnquiries").innerText = data.total;
+}
+
+loadEnquiryCount();
+
 const logoutBtn = document.getElementById("logoutBtn");
 
 if (logoutBtn) {
@@ -57,3 +66,25 @@ document.querySelectorAll(".menu-header").forEach(header => {
     menuItem.classList.toggle("open");
   });
 });
+
+const enquiryToggle = document.querySelector(".enquiry-toggle");
+const enquirySubmenu = document.querySelector(".enquiry-submenu");
+
+const userToggle = document.querySelector(".user-toggle");
+const userManagement = document.querySelector(".user-management");
+
+const certificateToggle = document.querySelector(".certificate-toggle");
+const certificateSubmenu = document.querySelector(".certificate-submenu");
+
+enquiryToggle.addEventListener("click", () => {
+  enquirySubmenu.classList.toggle("show");
+});
+
+userToggle.addEventListener("click", () => {
+  userManagement.classList.toggle("show");
+});
+
+certificateToggle.addEventListener("click", () => {
+  certificateSubmenu.classList.toggle("show");
+});
+

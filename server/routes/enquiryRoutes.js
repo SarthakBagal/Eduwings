@@ -1,18 +1,24 @@
-import express from "express";
-import {
-  createEnquiry,
-  getAllEnquiries,
-  getEnquiryById,
-  updateEnquiryStatus,
-  deleteEnquiry,
-} from "../controllers/enquiryController.js";
+// import express from "express";
+// import Enquiry from "../models/enquiry.js";
 
-const router = express.Router();
+// import {
+//   createEnquiry,
+//   getAllEnquiries
+// } from "../controllers/enquiryController.js";
 
-router.post("/", createEnquiry);
-router.get("/", getAllEnquiries);
-router.get("/:id", getEnquiryById);
-router.put("/:id", updateEnquiryStatus);
-router.delete("/:id", deleteEnquiry);
+// const router = express.Router();
 
-export default router;
+// router.get("/count", async (req, res) => {
+//   try {
+//     const count = await Enquiry.countDocuments();
+//     res.json({ total: count });
+//   } catch (error) {
+//     res.status(500).json({ message: "Error getting count" });
+//   }
+// });
+
+// router.post("/", createEnquiry);
+// router.get("/", getAllEnquiries);
+
+
+// export default router;

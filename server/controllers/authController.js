@@ -86,6 +86,8 @@ export const login = async (req, res) => {
   }
 };
 
+//======================Log-Out============================
+
 export const logout = async (req, res) => {
   try {
     // Clear the cookie

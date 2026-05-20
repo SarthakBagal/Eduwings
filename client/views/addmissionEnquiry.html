@@ -2,16 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ECampus Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Addmission Enquiry</title>
 
-    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <link rel="stylesheet" href="../css/dashboard.css">
+<link rel="stylesheet" href="../css/dashboard.css">
+<link rel="stylesheet" href="../css/addmissionEnquiry.css">
+
 </head>
 <body>
 
@@ -27,7 +28,8 @@
 
     <ul class="menu">
         <li class="menu-item active">
-            <i class="fa fa-home"></i> Dashboard
+            <i class="fa fa-home"></i>
+            <a href="dashboard.html" class="menu-link">Dashboard</a>
             <span class="badge-new">NEW</span>
         </li>
 
@@ -100,10 +102,9 @@
 
         <li class="menu-title">Forgot Password</li>
         <li class="submenu-item"><i class="fa fa-key"></i> <a href="ForgotPasswprd.html" class="menu-link">Forgot Password </a></li>
-        <li class="submenu-item"><i class="fa fa-phone"></i> <a href="Contactsupport.html" class="menu-link">Contact Support </a></li>
+        <li class="submenu-item"><i class="fa fa-phone"></i> Contact Support</li>
     </ul>
 </div>
-
 <!-- ================= TOPBAR ================= -->
 <div class="topbar">
     <div class="left-section">
@@ -124,125 +125,83 @@
     </div>
 </div>
 
-<!-- ================= MAIN CONTENT ================= -->
-<div class="main-content">
-    <h1>Dashboard</h1>
+<div class="page-content">
 
-    <!-- ===== TOP 4 CARDS ===== -->
-    <div class="cards">
+<h2 class="page-title">Student Enquiry Form</h2>
 
-        <div class="card blue">
-            <div class="card-content">
-                <h2>53</h2>
-                <p>Total Admission</p>
-            </div>
-            <div class="card-icon">
-                <i class="fas fa-user-graduate"></i>
-            </div>
-            <div class="card-footer">
-                More info <i class="fas fa-arrow-circle-right"></i>
-            </div>
+<div class="form-card">
+
+<h3 class="card-title">Student Enquiry</h3>
+
+<form id="studentEnquiryForm">
+
+<div class="form-grid">
+
+<!-- =================================-->>
+    
+ <div class="card">
+
+        <h3>List of Student Enquired for Admission</h3>
+
+        <div class="form-row">
+
+            <input type="text" id="studentName" placeholder="Enquired Student Name">
+
+            <input type="text" id="enquiryNo" placeholder="Enquiry No">
+
         </div>
 
-        <div class="card green">
-            <div class="card-content">
-                <h2 id="totalEnquiries"></h2>
-                <p>Total Enquiry</p>
-            </div>
-            <div class="card-icon">
-                <i class="fas fa-bullhorn"></i>
-            </div>
-            <div class="card-footer">
-                More info <i class="fas fa-arrow-circle-right"></i>
-            </div>
+        <div class="form-row">
+
+            <input type="date" id="fromDate">
+
+            <input type="date" id="toDate">
+
+            <select id="sessionFilter">
+                <option>2024-2025</option>
+                <option>2025-2026</option>
+                <option selected>2026-2027</option>
+            </select>
+
         </div>
 
-        <div class="card orange">
-            <div class="card-content">
-                <h2>₹ 1,25,000</h2>
-                <p>Total Fees</p>
-            </div>
-            <div class="card-icon">
-                <i class="fas fa-indian-rupee-sign"></i>
-            </div>
-            <div class="card-footer">
-                More info <i class="fas fa-arrow-circle-right"></i>
-            </div>
-        </div>
+        <!-- <button type="button" onclick="searchEnquiries()">Search</button> -->
+        <button type="button" id="searchBtn">Search</button>
 
-        <div class="card red">
-            <div class="card-content">
-                <h2>120</h2>
-                <p>Total Student</p>
-            </div>
-            <div class="card-icon">
-                <i class="fas fa-users"></i>
-            </div>
-            <div class="card-footer">
-                More info <i class="fas fa-arrow-circle-right"></i>
-            </div>
-        </div>
-
-    </div> <!-- ✅ CLOSED .cards HERE -->
-
-<!-- ===== MIDDLE SECTION ===== -->
-<div class="middle-section">
-
-    <!-- LEFT SIDE -->
-    <div class="side-cards">
-        <div class="small-card azure">
-            <div>Student Search</div>
-            <div class="card-badge">
-                More Info <i class="fas fa-arrow-circle-right"></i>
-            </div>
-        </div>
-
-        <div class="small-card teal">
-            <div>Daily Attendance</div>
-            <div class="card-badge">
-                More Info <i class="fas fa-arrow-circle-right"></i>
-            </div>
-        </div>
-
-        <!-- Download Btn -->
-         <div class="download-btn-container-left">
-        <button class="download-btn">
-            <i class="fas fa-download"></i> Download Database Backup
-        </button>
-    </div>
     </div>
 
-    <!-- CENTER BANNER -->
-    <div class="center-banner">
-        <img src="../img/logo.banner2.png" alt="">
+
+    <!-- Table -->
+    <div class="card">
+
+        <h3>Student Enquiry List</h3>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>Date</th>
+                    <th>Enquiry No</th>
+                    <th>Student Name</th>
+                    <th>Program</th>
+                    <th>Semester</th>
+                    <th>Contact No</th>
+                    <th>Category</th>
+                    <th>Last School</th>
+                </tr>
+            </thead>
+
+            <tbody id="enquiryTable">
+
+            </tbody>
+
+        </table>
+
     </div>
 
-    <!-- RIGHT SIDE -->
-    <div class="side-cards">
-        <div class="small-card pink">
-            <div>Add New Student</div>
-            <div class="card-badge">
-                More Info <i class="fas fa-arrow-circle-right"></i>
-            </div>
-        </div>
-
-        <div class="small-card purple">
-            <div>Create User</div>
-            <div class="card-badge">
-                More Info <i class="fas fa-arrow-circle-right"></i>
-            </div>
-        </div>
-    </div>
 </div>
-
-<div class="footer">
-    Copyright © E Campus by India active Software Inc 2026.
-</div>
-
-</div> <!-- main-content -->
-
-<script src="/js/api.js"></script>
-<script src="/js/dashboard.js"></script>
-<script src="/js/script.js"></script>
+<script src="../js/dashboard.js"></script>
+<script src="../js/addmissionEnquiry.js"></script>
 </body>
 </html>

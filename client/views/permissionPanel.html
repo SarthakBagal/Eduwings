@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Permission Panel</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/permissionPanel.css">
+</head>
+<body>
+
+    <!-- ================= SIDEBAR ================= -->
+<div class="sidebar" id="sidebar">
+    <div class="profile">
+        <img src="../img/Eduwings_new (1).png" alt="admin">
+        <div class="profile-text">
+            <h4>Welcome,<br> superadmin</h4>
+            <p><span class="online-dot"></span> Online</p>
+        </div>
+    </div>
+
+    <ul class="menu">
+        <li class="menu-item active">
+            <i class="fa fa-home"></i>
+            <a href="dashboard.html" class="menu-link">Dashboard</a>
+            <span class="badge-new">NEW</span>
+        </li>
+
+        <li class="sidebar-search">
+            <input type="text" placeholder="Search...">
+            <i class="fas fa-search"></i>
+        </li>
+
+        <li class="menu-title">Marketing</li>
+
+    <li class="menu-item enquiry-toggle">
+        <i class="fa fa-bullhorn"></i> Enquiry
+        <span class="arrow">▼</span>
+    </li>
+
+    <ul class="submenu enquiry-submenu">
+        <li>
+            <a href="adminEnquiries.html" class="menu-link">Student Enquiry</a>
+        </li>
+
+        <li>
+            <a href="addmissionEnquiry.html">
+                List Of Student Enquired For Admission
+            </a>
+        </li>
+    </ul>  
+
+        <li class="menu-title">Academics</li>
+        <li class="submenu-item"><i class="fa fa-user-graduate"></i> Admission</li>
+        <li class="submenu-item"><i class="fas fa-indian-rupee-sign"></i> Fees</li>
+        <li class="menu-item certificate-toggle"><i class="fa fa-certificate"></i> Student Certificates
+        <span class="arrow">▼</span></li>
+
+    <ul class="submenu certificate-submenu">
+        <li>
+            <a href="leavingCertificate.html" class="menu-link">Leaving Certificate</a>
+        </li>
+
+        <li>
+            <a href="leavingCertificateList.html">Leaving Certificate List</a>
+        </li>
+        <li>
+            <a href="BonafiedCertificate.html">Bonafied Certificate</a>
+        </li>
+        <li>
+            <a href="BonafiedCertificateList.html">Bonafied Certificate List</a>
+        </li>
+    </ul>
+
+        <li class="menu-title">Administrator</li>
+        <!-- <li class="submenu-item"><i class="fa fa-users"></i> User Management</li> -->
+
+        <li class="menu-item user-toggle">
+        <i class="fa fa-users"></i> User Management
+        <span class="arrow">▼</span>
+    </li>
+
+    <ul class="submenu user-management">
+        <li>
+            <a href="createUser.html" class="menu-link">Create Enquiry</a>
+        </li>
+
+        <li>
+            <a href="permissionPanel.html">
+                Permission Panel
+            </a>
+        </li>
+    </ul>
+        
+
+        <li class="menu-title">Forgot Password</li>
+        <li class="submenu-item"><i class="fa fa-key"></i> <a href="ForgotPasswprd.html" class="menu-link">Forgot Password </a></li>
+        <li class="submenu-item"><i class="fa fa-phone"></i> Contact Support</li>
+    </ul>
+</div>
+
+<!-- ================= TOPBAR ================= -->
+<div class="topbar">
+    <div class="left-section">
+        <i class="fa fa-bars menu-toggle" onclick="toggleSidebar()"></i>
+        <div class="academic-year">
+            Academic Year :
+            <select>
+                <option>2026-2027</option>
+                <option>2025-2026</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="right-section">
+        <span>superadmin</span>
+        <i class="fa fa-power-off" id="logoutBtn"></i>
+        <i class="fa fa-cog"></i>
+    </div>
+</div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+    <div class="content-area">
+      <div class="panel">
+        <div class="panel-header">
+          <span class="panel-title">User Panel List</span>
+          <div class="panel-controls">
+            <span>&#8722;</span>
+            <span>&#10005;</span>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="cards-grid" id="cardsGrid">
+            <div class="loading"><i class="fas fa-spinner fa-spin"></i> Loading users...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDIT MODAL -->
+  <div class="modal-overlay" id="editModal">
+    <div class="modal">
+      <span class="modal-close" id="modalClose">&#10005;</span>
+      <h3>Edit User</h3>
+
+      <input type="hidden" id="editUserId"/>
+
+      <div class="modal-field">
+        <label>User Type</label>
+        <select id="editUserType">
+          <option value="Admin">Admin</option>
+          <option value="Staff">Staff</option>
+          <option value="Teacher">Teacher</option>
+          <option value="Student">Student</option>
+        </select>
+      </div>
+
+      <div class="modal-field">
+        <label>Username</label>
+        <input type="text" id="editUsername"/>
+      </div>
+
+      <div class="modal-field">
+        <label>Permissions</label>
+        <div class="modal-perms">
+          <label class="modal-perm-row"><input type="checkbox" class="edit-perm" value="Admission"/> Admission</label>
+          <label class="modal-perm-row"><input type="checkbox" class="edit-perm" value="Fees"/> Fees</label>
+          <label class="modal-perm-row"><input type="checkbox" class="edit-perm" value="Certificates"/> Certificates</label>
+          <label class="modal-perm-row"><input type="checkbox" class="edit-perm" value="User Management"/> User Management</label>
+          <label class="modal-perm-row"><input type="checkbox" class="edit-perm" value="Administrator"/> Administrator</label>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn-cancel" id="cancelBtn">Cancel</button>
+        <button class="btn-save"   id="saveBtn">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="toast"></div>
+
+  <script src="../js/dashboard.js"></script>
+  <script src="../js/permissionPanel.js"></script>
+
+</body>
+</html>
