@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ECampus Dashboard</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fees Report - ECampus</title>
+
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/fees.css">
 
     <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-    <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 
 <body>
@@ -22,6 +22,7 @@
             <p><span class="online-dot"></span> Online</p>
         </div>
     </div>
+
 
     <ul class="menu">
         <li class="menu-item active">
@@ -58,9 +59,7 @@
             <a href="fees.html" class="menu-link">Fees</a>
         </li>
 
-        <li class="submenu-item">
-            <i class="fa fa-certificate"></i> Student Certificates
-        </li>
+        <li class="submenu-item"><i class="fa fa-certificate"></i> Student Certificates</li>
 
         <li class="menu-title">Administrator</li>
         <li class="submenu-item"><i class="fa fa-users"></i> User Management</li>
@@ -89,8 +88,6 @@
         <div class="notification-wrapper">
             <i class="fa fa-bell" id="bellIcon"></i>
             <span class="notify-badge" id="notifyBadge">3</span>
-
-            <!-- NOTIFICATION DROPDOWN -->
             <div class="notification-dropdown" id="notificationDropdown">
                 <div class="notification-header">
                     <span>Notifications</span>
@@ -122,13 +119,10 @@
             </div>
         </div>
 
-
         <!-- USER DROPDOWN -->
         <div class="user-wrapper">
             <span id="userNameDisplay">superadmin</span>
             <i class="fa fa-power-off" id="powerBtn" title="Logout"></i>
-
-            <!-- USER DROPDOWN MENU -->
             <div class="user-dropdown" id="userDropdown">
                 <div class="user-dropdown-item logout-item" id="logoutBtn">
                     <i class="fa fa-sign-out-alt"></i> Logout
@@ -141,100 +135,58 @@
 
 <!-- ================= MAIN CONTENT ================= -->
 <div class="main-content">
-    <h1>Dashboard</h1>
 
-    <!-- TOP CARDS -->
-    <div class="cards">
+    <div class="fees-card">
 
-        <div class="card blue">
-            <div class="card-content">
-                <h2>53</h2>
-                <p>Total Admission</p>
-            </div>
-            <div class="card-icon">
-                <i class="fas fa-user-graduate"></i>
+        <div class="fees-header">
+            <h2>Fees Report</h2>
+            <div class="header-icons">
+                <i class="fa fa-minus"></i>
+                <i class="fa fa-times"></i>
             </div>
         </div>
 
-        <div class="card green">
-            <div class="card-content">
-                <h2>40</h2>
-                <p>Total Enquiry</p>
-            </div>
-            <div class="card-icon">
-                <i class="fas fa-bullhorn"></i>
-            </div>
-        </div>
-
-        <div class="card orange">
-            <div class="card-content">
-                <h2>₹ 1,25,000</h2>
-                <p>Total Fees</p>
-            </div>
-            <div class="card-icon">
-                <i class="fas fa-indian-rupee-sign"></i>
-            </div>
-        </div>
-
-        <div class="card red">
-            <div class="card-content">
-                <h2>120</h2>
-                <p>Total Student</p>
-            </div>
-            <div class="card-icon">
-                <i class="fas fa-users"></i>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- MIDDLE SECTION -->
-    <div class="middle-section">
-
-        <!-- LEFT -->
-        <div class="side-cards">
-            <div class="small-card azure" id="studentSearchCard">
-                <div>Student Search</div>
-                <div class="card-badge">
-                    More Info <i class="fas fa-arrow-circle-right"></i>
-                </div>
-            </div>
-
-            <div class="small-card teal">
-                <div>Daily Attendance</div>
-                <div class="card-badge">
-                    More Info <i class="fas fa-arrow-circle-right"></i>
-                </div>
-            </div>
-
-            <div class="download-btn-container-left">
-                <button class="download-btn" id="downloadBackupBtn">
-                    <i class="fas fa-download"></i> Download Database Backup
-                </button>
-            </div>
-        </div>
-
-        <!-- CENTER -->
-        <div class="center-banner">
-            <img src="../img/logo.banner.png" alt="banner">
-        </div>
-
-        <!-- RIGHT -->
-        <div class="side-cards">
-            <div class="small-card pink" id="addStudentCard">
-                <div>Add New Student</div>
-                <div class="card-badge">
-                    More Info <i class="fas fa-arrow-circle-right"></i>
-                </div>
-            </div>
-
-            <div class="small-card purple" id="createUserCard">
-                <div>Create User</div>
-                <div class="card-badge">
-                    More Info <i class="fas fa-arrow-circle-right"></i>
-                </div>
-            </div>
-        </div>
+        <table class="fees-table">
+            <thead>
+                <tr>
+                    <th>Sr No</th>
+                    <th>Fees Report</th>
+                    <th>View</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Scholarship Section</td>
+                    <td><button class="view-btn" data-action="scholarship">View</button></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Fees Collection</td>
+                    <td><button class="view-btn" data-action="feesCollection">View</button></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Bus Fees Collection</td>
+                    <td><button class="view-btn" data-action="busFees">View</button></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Collect Other Fees</td>
+                    <td><button class="view-btn" data-action="otherFees">View</button></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Management Concession</td>
+                    <td><button class="view-btn" data-action="concession">View</button></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Change Student Category</td>
+                    <td><button class="view-btn" data-action="studentCategory">View</button></td>
+                </tr>
+            </tbody>
+        </table>
 
     </div>
 
@@ -245,6 +197,7 @@
 </div>
 
 <script src="../js/dashboard.js"></script>
+<script src="../js/fees.js"></script>
 
 </body>
 </html>

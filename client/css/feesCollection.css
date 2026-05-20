@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #f4f6f9;
+}
+
+/* MAIN CONTENT */
+.main-content {
+    margin-left: 280px;
+    margin-top: 60px;
+    padding: 25px;
+    transition: 0.3s;
+}
+
+/* CONTAINER */
+.container {
+    width: 90%;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    overflow-x: auto;
+}
+
+/* HEADING */
+h2 {
+    text-align: center;
+}
+
+#messageBox {
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* SUCCESS */
+.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+/* ERROR */
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* HIDE */
+.hidden {
+    display: none;
+}
+
+/* TABLE */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+/* TABLE CELLS */
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+/* HEADER */
+th {
+    background: #f2f2f2;
+}
+
+/* ROW COLORS */
+#feesTable tbody tr:nth-child(even) {
+    background-color: #f4f6fb;
+}
+
+#feesTable tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+/* HOVER EFFECT */
+#feesTable tbody tr:hover {
+    background-color: #eaf3ff;
+    transition: 0.2s;
+}
+
+/* INPUT */
+input[type="number"] {
+    width: 80px;
+    padding: 5px;
+}
+
+/* BUTTON */
+button {
+    padding: 6px 10px;
+    background: #2196F3;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1976D2;
+}
+
+.paid {
+    color: green;
+    font-weight: bold;
+}
+
+.pending {
+    color: red;
+    font-weight: bold;
+}

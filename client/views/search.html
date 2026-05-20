@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Search - ECampus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/search.css">
+</head>
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+<div class="sidebar" id="sidebar">
+    <div class="profile">
+        <img src="../img/Eduwings_new (1).png" alt="admin">
+        <div class="profile-text">
+            <h4>Welcome,<br> superadmin</h4>
+            <p><span class="online-dot"></span> Online</p>
+        </div>
+    </div>
+
+
+    <ul class="menu">
+        <li class="menu-item active">
+    <i class="fa fa-home"></i>
+    <a href="dashboard.html" class="menu-link">Dashboard</a>
+    <span class="badge-new">new</span>
+</li>
+
+        <li class="sidebar-search">
+            <input type="text" placeholder="Search...">
+            <i class="fas fa-search"></i>
+        </li>
+
+        <li class="menu-title">Marketing</li>
+        <li class="submenu-item"><i class="fa fa-bullhorn"></i> Enquiry</li>
+
+        <li class="menu-title">Academics</li>
+   <li class="submenu-item" id="admissionBtn">
+    <i class="fa fa-user-graduate"></i>
+    <span>Admission</span>
+    <span class="admission-arrow" id="admissionArrow"></span>
+</li>
+
+<ul class="submenu-list" id="admissionMenu">
+    <li><a href="prospectus.html">Prospectus Sale (New)</a></li>
+    <li><a href="report.html">Prospectus Sales Report</a></li>
+    <li><a href="student-admission.html">Student Admission</a></li>
+    <li><a href="search.html">Student Search</a></li>
+    <li><a href="section.html">Student Section Allocation</a></li>
+</ul>
+
+        <li class="submenu-item">
+            <i class="fas fa-indian-rupee-sign"></i>
+            <a href="fees.html" class="menu-link">Fees</a>
+        </li>
+
+        <li class="submenu-item"><i class="fa fa-certificate"></i> Student Certificates</li>
+
+        <li class="menu-title">Administrator</li>
+        <li class="submenu-item"><i class="fa fa-users"></i> User Management</li>
+
+        <li class="menu-title">Support</li>
+        <li class="submenu-item"><i class="fa fa-key"></i> Forgot Password</li>
+        <li class="submenu-item"><i class="fa fa-phone"></i> Contact Support</li>
+    </ul>
+</div>
+
+<!-- ================= TOPBAR ================= -->
+<div class="topbar">
+    <div class="left-section">
+        <div class="academic-year">
+            Academic Year :
+            <select>
+                <option>2026-2027</option>
+                <option>2025-2026</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="right-section">
+
+        <!-- NOTIFICATION BELL -->
+        <div class="notification-wrapper">
+            <i class="fa fa-bell" id="bellIcon"></i>
+            <span class="notify-badge" id="notifyBadge">3</span>
+            <div class="notification-dropdown" id="notificationDropdown">
+                <div class="notification-header">
+                    <span>Notifications</span>
+                    <span class="mark-read" id="markAllRead">Mark all as read</span>
+                </div>
+                <div class="notification-list" id="notificationList">
+                    <div class="notification-item unread">
+                        <i class="fa fa-user-graduate"></i>
+                        <div class="notif-text">
+                            <p>New student admitted</p>
+                            <span>2 mins ago</span>
+                        </div>
+                    </div>
+                    <div class="notification-item unread">
+                        <i class="fa fa-indian-rupee-sign"></i>
+                        <div class="notif-text">
+                            <p>Fees collected from Ayushi</p>
+                            <span>15 mins ago</span>
+                        </div>
+                    </div>
+                    <div class="notification-item unread">
+                        <i class="fa fa-certificate"></i>
+                        <div class="notif-text">
+                            <p>New prospectus sale added</p>
+                            <span>1 hour ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- USER DROPDOWN -->
+        <div class="user-wrapper">
+            <span id="userNameDisplay">superadmin</span>
+            <i class="fa fa-power-off" id="powerBtn" title="Logout"></i>
+            <div class="user-dropdown" id="userDropdown">
+                <div class="user-dropdown-item logout-item" id="logoutBtn">
+                    <i class="fa fa-sign-out-alt"></i> Logout
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ================= MAIN CONTENT ================= -->
+<div class="main-content">
+    <div class="container">
+
+        <!-- SEARCH FORM -->
+        <div class="report-card">
+            <div class="report-card-header">
+                <span>Student Search</span>
+                <div class="header-icons">
+                    <i class="fa fa-minus"></i>
+                    <i class="fa fa-times"></i>
+                </div>
+            </div>
+
+            <div class="report-card-body">
+
+                <!-- COLUMN TOGGLE BUTTONS -->
+                <div class="column-btns">
+                    <button class="col-btn active" data-col="studentId">Student Id</button>
+                    <button class="col-btn" data-col="name">Name</button>
+                    <button class="col-btn" data-col="program">Program</button>
+                    <button class="col-btn" data-col="semester">Semester</button>
+                    <button class="col-btn" data-col="phone">Phone</button>
+                    <button class="col-btn" data-col="address">Address</button>
+                    <button class="col-btn" data-col="category">Category</button>
+                    <button class="col-btn" data-col="enrollmentNo">Enrollment No</button>
+                    <button class="col-btn" data-col="session">Session</button>
+                </div>
+
+                <!-- DYNAMIC SEARCH FIELDS -->
+                <div id="dynamicSearchFields">
+
+                    <div class="search-field" id="field-studentId">
+                        <div class="form-group">
+                            <label>Student Id</label>
+                            <input type="text" id="searchStudentId" placeholder="Enter student ID">
+                        </div>
+                    </div>
+
+                    <div class="search-field" id="field-name" style="display:none;">
+                        <div class="form-group">
+                            <label>Student Name</label>
+                            <input type="text" id="searchName" placeholder="Enter student name">
+                        </div>
+                    </div>
+
+                    <div class="search-field" id="field-program" style="display:none;">
+                        <div class="form-group">
+                            <label>Program</label>
+                            <select id="searchProgram">
+                                <option value="">-- Select --</option>
+                                <option value="Diploma in Pharmacy (D Pharm)">Diploma in Pharmacy (D Pharm)</option>
+                                <option value="Bachelor of Pharmacy (B Pharm)">Bachelor of Pharmacy (B Pharm)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="search-field" id="field-semester" style="display:none;">
+                        <div class="form-group">
+                            <label>Semester</label>
+                            <select id="searchSemester">
+                                <option value="">-- Select --</option>
+                                <option value="I Year">I Year</option>
+                                <option value="I Year - I Sem">I Year - I Sem</option>
+                                <option value="II Year">II Year</option>
+                                <option value="II Year - II Sem">II Year - II Sem</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="search-field" id="field-phone" style="display:none;">
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="text" id="searchPhone" placeholder="Enter phone number">
+                        </div>
+                    </div>
+
+                    <div class="search-field" id="field-address" style="display:none;">
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input type="text" id="searchAddress" placeholder="Enter address">
+                        </div>
+                    </div>
+
+                    <div class="search-field" id="field-category" style="display:none;">
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select id="searchCategory">
+                                <option value="">-- Select --</option>
+                                <option value="General">General</option>
+                                <option value="OBC">OBC</option>
+                                <option value="SC">SC</option>
+                                <option value="ST">ST</option>
+                                <option value="SBC">SBC</option>
+                                <option value="NT">NT</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="search-field" id="field-enrollmentNo" style="display:none;">
+                        <div class="form-group">
+                            <label>Enrollment No</label>
+                            <input type="text" id="searchEnrollmentNo" placeholder="Enter enrollment no">
+                        </div>
+                    </div>
+
+                    <div class="search-field" id="field-session" style="display:none;">
+                        <div class="form-group">
+                            <label>Session</label>
+                            <select id="searchSession">
+                                <option value="">-- Select --</option>
+                                <option value="2026-2027">2026-2027</option>
+                                <option value="2025-2026">2025-2026</option>
+                                <option value="2024-2025">2024-2025</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- REGISTRATION NO + DATE FILTERS -->
+                <div class="search-filter-row" style="margin-top:15px;">
+                    <div class="form-group">
+                        <label>Registration No.</label>
+                        <input type="text" id="searchRegNo" placeholder="Enter registration no">
+                    </div>
+                </div>
+
+                <div class="search-filter-row">
+                    <div class="form-group">
+                        <label>From Date</label>
+                        <input type="date" id="fromDate">
+                    </div>
+                    <div class="form-group">
+                        <label>To Date</label>
+                        <input type="date" id="toDate">
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button class="btn show-btn" id="showBtn">Show</button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- STUDENTS TABLE -->
+        <div class="report-card" id="studentsSection" style="display:none;">
+            <div class="report-card-header">
+                <span>Students</span>
+                <div class="header-icons">
+                    <i class="fa fa-minus"></i>
+                    <i class="fa fa-times"></i>
+                </div>
+            </div>
+
+            <div class="report-card-body">
+
+                <div class="export-btns">
+                    <button class="btn export copy-btn" id="copyBtn">Copy</button>
+                    <button class="btn export csv-btn" id="csvBtn">CSV</button>
+                    <button class="btn export excel-btn" id="excelBtn">Excel</button>
+                    <button class="btn export print-btn" id="printBtn">Print</button>
+                </div>
+
+                <div class="table-search-row">
+                    <span>Search:</span>
+                    <input type="text" id="tableSearch" placeholder="">
+                </div>
+
+                <div class="table-container">
+                    <table id="studentsTable">
+                        <thead>
+                            <tr>
+                                <th>Sr No</th>
+                                <th>Student Id</th>
+                                <th>Student Name</th>
+                                <th>Sem</th>
+                                <th>Class</th>
+                                <th>Category</th>
+                                <th>Tel no</th>
+                                <th>Admission Date</th>
+                                <th>Year</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentsTableBody"></tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        Copyright © E Campus by India Active Software Inc 2026.
+    </div>
+</div>
+
+<script src="../js/dashboard.js"></script>
+<script src="../js/search.js"></script>
+
+</body>
+</html>

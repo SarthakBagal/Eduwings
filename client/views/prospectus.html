@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prospectus Sale - ECampus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/prospectus.css">
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+<div class="sidebar" id="sidebar">
+    <div class="profile">
+        <img src="../img/Eduwings_new (1).png" alt="admin">
+        <div class="profile-text">
+            <h4>Welcome,<br> superadmin</h4>
+            <p><span class="online-dot"></span> Online</p>
+        </div>
+    </div>
+
+
+    <ul class="menu">
+        <li class="menu-item active">
+    <i class="fa fa-home"></i>
+    <a href="dashboard.html" class="menu-link">Dashboard</a>
+    <span class="badge-new">new</span>
+</li>
+
+        <li class="sidebar-search">
+            <input type="text" placeholder="Search...">
+            <i class="fas fa-search"></i>
+        </li>
+
+        <li class="menu-title">Marketing</li>
+        <li class="submenu-item"><i class="fa fa-bullhorn"></i> Enquiry</li>
+
+        <li class="menu-title">Academics</li>
+   <li class="submenu-item" id="admissionBtn">
+    <i class="fa fa-user-graduate"></i>
+    <span>Admission</span>
+    <span class="admission-arrow" id="admissionArrow"></span>
+</li>
+
+<ul class="submenu-list" id="admissionMenu">
+    <li><a href="prospectus.html">Prospectus Sale (New)</a></li>
+    <li><a href="report.html">Prospectus Sales Report</a></li>
+    <li><a href="student-admission.html">Student Admission</a></li>
+    <li><a href="search.html">Student Search</a></li>
+    <li><a href="section.html">Student Section Allocation</a></li>
+</ul>
+
+        <li class="submenu-item">
+            <i class="fas fa-indian-rupee-sign"></i>
+            <a href="fees.html" class="menu-link">Fees</a>
+        </li>
+
+        <li class="submenu-item">
+            <i class="fa fa-certificate"></i> Student Certificates
+        </li>
+
+        <li class="menu-title">Administrator</li>
+        <li class="submenu-item"><i class="fa fa-users"></i> User Management</li>
+
+        <li class="menu-title">Support</li>
+        <li class="submenu-item"><i class="fa fa-key"></i> Forgot Password</li>
+        <li class="submenu-item"><i class="fa fa-phone"></i> Contact Support</li>
+    </ul>
+</div>
+
+<!-- ================= TOPBAR ================= -->
+<div class="topbar">
+    <div class="left-section">
+        <div class="academic-year">
+            Academic Year :
+            <select>
+                <option>2026-2027</option>
+                <option>2025-2026</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="right-section">
+
+        <!-- NOTIFICATION BELL -->
+        <div class="notification-wrapper">
+            <i class="fa fa-bell" id="bellIcon"></i>
+            <span class="notify-badge" id="notifyBadge">3</span>
+            <div class="notification-dropdown" id="notificationDropdown">
+                <div class="notification-header">
+                    <span>Notifications</span>
+                    <span class="mark-read" id="markAllRead">Mark all as read</span>
+                </div>
+                <div class="notification-list" id="notificationList">
+                    <div class="notification-item unread">
+                        <i class="fa fa-user-graduate"></i>
+                        <div class="notif-text">
+                            <p>New student admitted</p>
+                            <span>2 mins ago</span>
+                        </div>
+                    </div>
+                    <div class="notification-item unread">
+                        <i class="fa fa-indian-rupee-sign"></i>
+                        <div class="notif-text">
+                            <p>Fees collected from Ayushi</p>
+                            <span>15 mins ago</span>
+                        </div>
+                    </div>
+                    <div class="notification-item unread">
+                        <i class="fa fa-certificate"></i>
+                        <div class="notif-text">
+                            <p>New prospectus sale added</p>
+                            <span>1 hour ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- USER DROPDOWN -->
+        <div class="user-wrapper">
+            <span id="userNameDisplay">superadmin</span>
+            <i class="fa fa-power-off" id="powerBtn" title="Logout"></i>
+            <div class="user-dropdown" id="userDropdown">
+                <div class="user-dropdown-item logout-item" id="logoutBtn">
+                    <i class="fa fa-sign-out-alt"></i> Logout
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- ================= MAIN CONTENT ================= -->
+<div class="main-content">
+<div class="container">
+
+    <!-- ===== FORM 1 - PROSPECTUS SALE ===== -->
+    <div class="form-container">
+        <div class="form-title">Prospectus Sale</div>
+
+        <form id="prospectusForm">
+
+            <!-- Row 1 -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" id="date" required>
+                </div>
+                <div class="form-group">
+                    <label>Prospectus No</label>
+                    <input type="text" id="prospectusNo" required>
+                </div>
+                <div class="form-group">
+                    <label>Section</label>
+                    <select id="section">
+                        <option>Select Section</option>
+                        <option>A</option>
+                        <option>B</option>
+                        <option>C</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="category">
+                        <option>Select</option>
+                        <option>General</option>
+                        <option>OBC</option>
+                        <option>SC</option>
+                        <option>ST</option>
+                        <option>SBC</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Student Name</label>
+                    <input type="text" id="studentName" required>
+                </div>
+                <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" id="firstName">
+                </div>
+                <div class="form-group">
+                    <label>Middle Name</label>
+                    <input type="text" id="middleName">
+                </div>
+                <div class="form-group">
+                    <label>Last Name</label>
+                    <input type="text" id="lastName">
+                </div>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Program</label>
+                    <select id="program">
+                        <option>---SELECT---</option>
+                        <option>Bachelor of Pharmacy (B Pharm)</option>
+                        <option>Diploma in Pharmacy (D Pharm)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Semester</label>
+                    <select id="semester">
+                        <option>---SELECT---</option>
+                        <option>Sem I</option>
+                        <option>Sem II</option>
+                        <option>Sem III</option>
+                        <option>Sem IV</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Session</label>
+                    <select id="session">
+                        <option>2026-2027</option>
+                        <option>2025-2026</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Contact No</label>
+                    <input type="text" id="contactNo">
+                </div>
+            </div>
+
+            <!-- Row 4 -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Prospectus Amount</label>
+                    <input type="number" id="amount">
+                </div>
+                <div class="form-group">
+                    <label>Medium</label>
+                    <select id="medium">
+                        <option>--Medium--</option>
+                        <option>English</option>
+                        <option>Hindi</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Percentage</label>
+                    <input type="number" id="percentage">
+                </div>
+            </div>
+
+            <!-- Row 5 -->
+            <div class="form-row">
+                <div class="form-group full">
+                    <label>Last School / College</label>
+                    <input type="text" id="school">
+                </div>
+                <div class="form-group full">
+                    <label>Address</label>
+                    <textarea id="address"></textarea>
+                </div>
+            </div>
+
+            <!-- BUTTONS -->
+            <div class="form-actions">
+                <button type="submit" class="btn submit">Submit</button>
+                <button type="reset" class="btn cancel">Cancel</button>
+            </div>
+
+        </form>
+    </div>
+
+    <!-- ===== FORM 2 - PROSPECTUS SALES LIST SEARCH ===== -->
+    <div class="form-container" id="searchSection">
+        <div class="form-title">Prospectus Sales List</div>
+
+        <form id="searchForm">
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>From Date</label>
+                    <input type="date" id="fromDate">
+                </div>
+                <div class="form-group">
+                    <label>To Date</label>
+                    <input type="date" id="toDate">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="searchCategory">
+                        <option value="">Open</option>
+                        <option value="General">General</option>
+                        <option value="OBC">OBC</option>
+                        <option value="SC">SC</option>
+                        <option value="ST">ST</option>
+                        <option value="SBC">SBC</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Program</label>
+                    <select id="searchProgram">
+                        <option value="">-----SELECT-----</option>
+                      <option>Bachelor of Pharmacy (B Pharm)</option>
+                        <option>Diploma in Pharmacy (D Pharm)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Semester</label>
+                    <select id="searchSemester">
+                        <option value="">-----SELECT-----</option>
+                        <option value="Sem I">Sem I</option>
+                        <option value="Sem II">Sem II</option>
+                        <option value="Sem III">Sem III</option>
+                        <option value="Sem IV">Sem IV</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Session</label>
+                    <select id="searchSession">
+                        <option value="2026-2027">2026-2027</option>
+                        <option value="2025-2026">2025-2026</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn search-btn">Search</button>
+            </div>
+
+        </form>
+
+<!-- EXPORT BUTTONS -->
+<button class="btn export copy-btn" id="copyBtn">Copy</button>
+<button class="btn export csv-btn" id="csvBtn">CSV</button>
+<button class="btn export excel-btn" id="excelBtn">Excel</button>
+<button class="btn export print-btn" id="printBtn">Print</button>
+
+        <!-- RESULTS TABLE -->
+        <div class="table-container" id="tableContainer" style="display:none;">
+            <table id="salesTable">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Prospectus No</th>
+                        <th>Student Name</th>
+                        <th>Program</th>
+                        <th>Semester</th>
+                        <th>Contact No</th>
+                        <th>Category</th>
+                        <th>Last School Attended</th>
+                    </tr>
+                </thead>
+                <tbody id="salesTableBody"></tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+    <div class="footer">
+        Copyright © E Campus by India Active Software Inc 2026.
+    </div>
+</div>
+
+<script src="../js/dashboard.js"></script>
+<script src="../js/prospectus.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,261 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #f4f6f9;
+}
+
+.main-content {
+    margin-left: 280px;
+    margin-top: 60px;
+    padding: 25px;
+    padding-bottom: 50px;
+}
+
+/* ================= REPORT CARD ================= */
+.report-card {
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    margin-bottom: 25px;
+    border: 1px solid #e0e0e0;
+}
+
+.report-card-header {
+    background: #f8f9fa;
+    padding: 12px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+    border-radius: 6px 6px 0 0;
+}
+
+.header-icons {
+    display: flex;
+    gap: 12px;
+    color: #999;
+    cursor: pointer;
+}
+
+.header-icons i:hover {
+    color: #333;
+}
+
+.report-card-body {
+    padding: 20px;
+}
+
+/* ================= FORM ================= */
+.form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 180px;
+    gap: 5px;
+}
+
+.form-group label {
+    font-size: 13px;
+    color: #444;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select {
+    height: 38px;
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 13px;
+    outline: none;
+    transition: 0.2s;
+    background: #fff;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #3c8dbc;
+    box-shadow: 0 0 3px rgba(60,141,188,0.3);
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* ================= BUTTONS ================= */
+.btn {
+    padding: 8px 22px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: 0.2s;
+    user-select: none;
+}
+
+.save-btn { background: #3c8dbc; color: #fff; }
+.save-btn:hover { background: #2e6da4; }
+
+.cancel-btn { background: #e74c3c; color: #fff; }
+.cancel-btn:hover { background: #c0392b; }
+
+.show-btn { background: #f39c12; color: #fff; }
+.show-btn:hover { background: #d68910; }
+
+/* ================= COLUMN TOGGLE BUTTONS ================= */
+.column-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.col-btn {
+    padding: 7px 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    background: #bdc3c7;
+    color: #555;
+    transition: 0.2s;
+    user-select: none;
+}
+
+.col-btn.active {
+    background: #3c8dbc;
+    color: #fff;
+}
+
+.col-btn:hover {
+    background: #3c8dbc;
+    color: #fff;
+}
+
+/* ================= DYNAMIC SEARCH FIELD ================= */
+.search-field {
+    margin-bottom: 15px;
+}
+
+/* ================= SEARCH FILTER ROW ================= */
+.search-filter-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+/* ================= EXPORT BUTTONS ================= */
+.export-btns {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.btn.export { padding: 7px 16px; font-size: 13px; }
+
+.copy-btn { background: #343a40; color: #fff; }
+.copy-btn:hover { background: #23272b; }
+
+.csv-btn { background: #343a40; color: #fff; }
+.csv-btn:hover { background: #23272b; }
+
+.excel-btn { background: #343a40; color: #fff; }
+.excel-btn:hover { background: #23272b; }
+
+.print-btn { background: #343a40; color: #fff; }
+.print-btn:hover { background: #23272b; }
+
+/* ================= TABLE SEARCH ================= */
+.table-search-row {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    color: #444;
+}
+
+.table-search-row input {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 13px;
+    outline: none;
+    width: 200px;
+}
+
+/* ================= TABLE ================= */
+.table-container { overflow-x: auto; }
+
+#studentsTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#studentsTable thead tr { background: #f1f1f1; }
+
+#studentsTable th {
+    padding: 11px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid #ddd;
+    text-align: left;
+    color: #333;
+    white-space: nowrap;
+    user-select: none;
+}
+
+#studentsTable td {
+    padding: 10px 12px;
+    font-size: 13px;
+    border: 1px solid #eee;
+    color: #555;
+    white-space: nowrap;
+}
+
+#studentsTable tr:nth-child(even) { background: #f9fbff; }
+#studentsTable tbody tr:hover { background: #eaf3ff; }
+
+#studentsTable td[colspan] {
+    text-align: center;
+    color: #999;
+    padding: 20px;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: #e74c3c;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.delete-btn:hover { color: #c0392b; }
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+    .main-content { margin-left: 0; padding: 15px; }
+    .form-row, .search-filter-row { flex-direction: column; }
+    .form-group { width: 100%; }
+}

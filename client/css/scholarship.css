@@ -1,0 +1,229 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body { background: #f4f6f9; }
+
+.main-content {
+    margin-left: 280px;
+    margin-top: 60px;
+    padding: 25px;
+    padding-bottom: 50px;
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+}
+
+/* ================= SCROLLABLE SECTION ================= */
+.report-card-body {
+    padding: 20px;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.report-card-header {
+    background: #f8f9fa;
+    padding: 12px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+    border-radius: 6px 6px 0 0;
+}
+
+.header-icons {
+    display: flex;
+    gap: 12px;
+    color: #999;
+    cursor: pointer;
+}
+
+.header-icons i:hover { color: #333; }
+
+.report-card-body { padding: 20px; }
+
+.session-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: #444;
+    margin-bottom: 15px;
+}
+
+/* ================= EXPORT BUTTONS ================= */
+.export-btns {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.btn {
+    padding: 8px 22px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: 0.2s;
+    user-select: none;
+}
+
+.btn.export { padding: 7px 16px; font-size: 13px; }
+
+.copy-btn { background: #343a40; color: #fff; }
+.copy-btn:hover { background: #23272b; }
+
+.csv-btn { background: #343a40; color: #fff; }
+.csv-btn:hover { background: #23272b; }
+
+.excel-btn { background: #343a40; color: #fff; }
+.excel-btn:hover { background: #23272b; }
+
+.print-btn { background: #343a40; color: #fff; }
+.print-btn:hover { background: #23272b; }
+
+/* ================= TABLE SEARCH ================= */
+.table-search-row {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    color: #444;
+}
+
+.table-search-row input {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 13px;
+    outline: none;
+    width: 200px;
+}
+
+/* ================= TABLE ================= */
+.table-container {
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+#studentTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#studentTable thead tr { background: #f1f1f1; }
+
+#studentTable th {
+    padding: 11px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid #ddd;
+    text-align: left;
+    color: #333;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    background: #f1f1f1;
+    z-index: 1;
+    user-select: none;
+}
+
+#studentTable td {
+    padding: 10px 12px;
+    font-size: 13px;
+    border: 1px solid #eee;
+    color: #555;
+    white-space: nowrap;
+}
+
+#studentTable tr:nth-child(even) { background: #f9fbff; }
+#studentTable tbody tr:hover { background: #eaf3ff; }
+
+#studentTable td[colspan] {
+    text-align: center;
+    color: #999;
+    padding: 20px;
+}
+
+/* ================= TOGGLE SWITCH ================= */
+.toggle {
+    position: relative;
+    display: inline-block;
+    width: 46px;
+    height: 24px;
+}
+
+.toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #00a65a;
+}
+
+input:checked + .slider:before {
+    transform: translateX(22px);
+}
+
+/* Reference input */
+#studentTable input[type="text"] {
+    padding: 5px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 13px;
+    outline: none;
+    width: 140px;
+}
+
+#studentTable input[type="text"]:focus {
+    border-color: #3c8dbc;
+}
+
+/* ================= FOOTER ================= */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 280px;
+    width: calc(100% - 280px);
+    background: #2c3e50;
+    color: #ccc;
+    padding: 12px 20px;
+    font-size: 14px;
+    text-align: left;
+    border-top: 1px solid #ddd;
+    z-index: 999;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+    .main-content { margin-left: 0; padding: 15px; }
+}
