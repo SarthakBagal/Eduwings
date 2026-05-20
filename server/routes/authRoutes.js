@@ -5,7 +5,6 @@ import { validate } from "../middleware/validateMiddleware.js";
 import { protect } from "../middleware/authMiddleware.js";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
-import path from "path";
 const router = express.Router();
 
 

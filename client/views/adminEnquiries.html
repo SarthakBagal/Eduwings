@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Enquiry</title>
+
+<!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="../css/dashboard.css">
+
+<link rel="stylesheet" href="../css/dashboard.css">
+<link rel="stylesheet" href="../css/adminEnquries.css">
+
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+<div class="sidebar" id="sidebar">
+    <div class="profile">
+        <img src="../img/Eduwings_new (1).png" alt="admin">
+        <div class="profile-text">
+            <h4>Welcome,<br> superadmin</h4>
+            <p><span class="online-dot"></span> Online</p>
+        </div>
+    </div>
+
+    <ul class="menu">
+        <li class="menu-item active">
+            <i class="fa fa-home"></i>
+            <a href="dashboard.html" class="menu-link">Dashboard</a>
+            <span class="badge-new">NEW</span>
+        </li>
+
+        <li class="sidebar-search">
+            <input type="text" placeholder="Search...">
+            <i class="fas fa-search"></i>
+        </li>
+
+        <li class="menu-title">Marketing</li>
+
+    <li class="menu-item enquiry-toggle">
+        <i class="fa fa-bullhorn"></i> Enquiry
+        <span class="arrow">▼</span>
+    </li>
+
+    <ul class="submenu enquiry-submenu">
+        <li>
+            <a href="adminEnquiries.html" class="menu-link">Student Enquiry</a>
+        </li>
+
+        <li>
+            <a href="addmissionEnquiry.html">
+                List Of Student Enquired For Admission
+            </a>
+        </li>
+    </ul>  
+
+        <li class="menu-title">Academics</li>
+        <li class="submenu-item"><i class="fa fa-user-graduate"></i> Admission</li>
+        <li class="submenu-item"><i class="fas fa-indian-rupee-sign"></i> Fees</li>
+        <li class="menu-item certificate-toggle"><i class="fa fa-certificate"></i> Student Certificates
+        <span class="arrow">▼</span></li>
+
+    <ul class="submenu certificate-submenu">
+        <li>
+            <a href="leavingCertificate.html" class="menu-link">Leaving Certificate</a>
+        </li>
+
+        <li>
+            <a href="leavingCertificateList.html">Leaving Certificate List</a>
+        </li>
+        <li>
+            <a href="BonafiedCertificate.html">Bonafied Certificate</a>
+        </li>
+        <li>
+            <a href="BonafiedCertificateList.html">Bonafied Certificate List</a>
+        </li>
+    </ul>
+
+        <li class="menu-title">Administrator</li>
+        <!-- <li class="submenu-item"><i class="fa fa-users"></i> User Management</li> -->
+
+        <li class="menu-item user-toggle">
+        <i class="fa fa-users"></i> User Management
+        <span class="arrow">▼</span>
+    </li>
+
+    <ul class="submenu user-management">
+        <li>
+            <a href="createUser.html" class="menu-link">Create Enquiry</a>
+        </li>
+
+        <li>
+            <a href="permissionPanel.html">
+                Permission Panel
+            </a>
+        </li>
+    </ul>
+        
+
+        <li class="menu-title">Forgot Password</li>
+        <li class="submenu-item"><i class="fa fa-key"></i> <a href="ForgotPasswprd.html" class="menu-link">Forgot Password </a></li>
+        <li class="submenu-item"><i class="fa fa-phone"></i> Contact Support</li>
+    </ul>
+</div>
+
+<!-- ================= TOPBAR ================= -->
+<div class="topbar">
+    <div class="left-section">
+        <i class="fa fa-bars menu-toggle" onclick="toggleSidebar()"></i>
+        <div class="academic-year">
+            Academic Year :
+            <select>
+                <option>2026-2027</option>
+                <option>2025-2026</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="right-section">
+        <span>superadmin</span>
+        <i class="fa fa-power-off" id="logoutBtn"></i>
+        <i class="fa fa-cog"></i>
+    </div>
+</div>
+
+<div class="page-content">
+
+<h2 class="page-title">Student Enquiry Form</h2>
+
+<div class="form-card">
+
+<h3 class="card-title">Student Enquiry</h3>
+
+<form id="studentEnquiryForm">
+
+<div class="form-grid">
+
+<!-- ROW 1 -->
+
+<div class="form-group">
+<label>Date *</label>
+<input type="date" name="date">
+</div>
+
+<div class="form-group">
+<label>Enquiry No *</label>
+<input type="text" name="enquiryNo">
+</div>
+
+<div class="form-group">
+<label>Section</label>
+<select name="section">
+<option>Select Section</option>
+<option>UG</option>
+<option>PG</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Category</label>
+<select name="category">
+<option>Select Category</option>
+<option>General</option>
+<option>SC</option>
+<option>ST</option>
+</select>
+</div>
+
+<!-- ROW 2 -->
+
+<div class="form-group">
+<label>Title *</label>
+<select name="title">
+<option>Mr</option>
+<option>Miss</option>
+<option>Mrs</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>First Name *</label>
+<input type="text" name="firstName">
+</div>
+
+<div class="form-group">
+<label>Middle Name</label>
+<input type="text" name="middleName">
+</div>
+
+<div class="form-group">
+<label>Last Name *</label>
+<input type="text" name="lastName">
+</div>
+
+<!-- ROW 3 -->
+
+<div class="form-group">
+<label>Program *</label>
+<select name="program">
+<option>----SELECT----</option>
+<option>BCA</option>
+<option>BBA</option>
+<option>MCA</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Semester *</label>
+<select name="semester">
+<option>----SELECT----</option>
+<option>1</option>
+<option>2</option>
+<option>3</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Session *</label>
+<select name="session">
+<option>2026-2027</option>
+<option>2025-2026</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Contact No *</label>
+<input type="text" name="contact">
+</div>
+
+<!-- ROW 4 -->
+
+<div class="form-group full-width">
+<label>Address</label>
+<textarea name="address"></textarea>
+</div>
+
+<div class="form-group">
+<label>Last School / College Attended</label>
+<input type="text" name="school">
+</div>
+
+<div class="form-group">
+<label>Landmark</label>
+<input type="text" name="landmark">
+</div>
+
+<!-- ROW 5 -->
+
+<div class="form-group">
+<label>Percentage</label>
+<input type="number" name="percentage">
+</div>
+
+<div class="form-group">
+<label>Medium</label>
+<select name="medium">
+<option>--Medium--</option>
+<option>English</option>
+<option>Hindi</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Reference With</label>
+<select name="reference">
+<option>----SELECT----</option>
+<option>Friend</option>
+<option>Advertisement</option>
+</select>
+</div>
+
+</div>
+
+<div class="form-buttons">
+
+<button type="submit" class="btn-submit">Submit</button>
+<button type="reset" class="btn-cancel">Cancel</button>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+<div class="main-content">
+
+<h2 class="th2">Student Enquiry List</h2>
+
+<div class="table-container">
+
+<table id="enquiryTable">
+
+<thead>
+<tr>
+<th>Date</th>
+<th>Title</th>
+<th>First Name</th>
+<th>Middle Name</th>
+<th>Last Name</th>
+<th>Program</th>
+<th>Semester</th>
+<th>Session</th>
+<th>Contact No</th>
+<th>Address</th>
+<th>School</th>
+<th>Landmark</th>
+<th>Percentage</th>
+<th>Medium</th>
+<th>Reference</th>
+</tr>
+</thead>
+
+<tbody id="enquiryTableBody">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+<script src="../js/dashboard.js"></script>
+<script src="../js/adminEnquiries.js"></script>
+
+</body>
+</html>

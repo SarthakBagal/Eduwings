@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Addmission Enquiry</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<link rel="stylesheet" href="../css/dashboard.css">
+<link rel="stylesheet" href="../css/addmissionEnquiry.css">
+
+</head>
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+<div class="sidebar" id="sidebar">
+    <div class="profile">
+        <img src="../img/Eduwings_new (1).png" alt="admin">
+        <div class="profile-text">
+            <h4>Welcome,<br> superadmin</h4>
+            <p><span class="online-dot"></span> Online</p>
+        </div>
+    </div>
+
+    <ul class="menu">
+        <li class="menu-item active">
+            <i class="fa fa-home"></i>
+            <a href="dashboard.html" class="menu-link">Dashboard</a>
+            <span class="badge-new">NEW</span>
+        </li>
+
+        <li class="sidebar-search">
+            <input type="text" placeholder="Search...">
+            <i class="fas fa-search"></i>
+        </li>
+
+        <li class="menu-title">Marketing</li>
+
+    <li class="menu-item enquiry-toggle">
+        <i class="fa fa-bullhorn"></i> Enquiry
+        <span class="arrow">▼</span>
+    </li>
+
+    <ul class="submenu enquiry-submenu">
+        <li>
+            <a href="adminEnquiries.html" class="menu-link">Student Enquiry</a>
+        </li>
+
+        <li>
+            <a href="addmissionEnquiry.html">
+                List Of Student Enquired For Admission
+            </a>
+        </li>
+    </ul>  
+
+        <li class="menu-title">Academics</li>
+        <li class="submenu-item"><i class="fa fa-user-graduate"></i> Admission</li>
+        <li class="submenu-item"><i class="fas fa-indian-rupee-sign"></i> Fees</li>
+        <li class="menu-item certificate-toggle"><i class="fa fa-certificate"></i> Student Certificates
+        <span class="arrow">▼</span></li>
+
+    <ul class="submenu certificate-submenu">
+        <li>
+            <a href="leavingCertificate.html" class="menu-link">Leaving Certificate</a>
+        </li>
+
+        <li>
+            <a href="leavingCertificateList.html">Leaving Certificate List</a>
+        </li>
+        <li>
+            <a href="BonafiedCertificate.html">Bonafied Certificate</a>
+        </li>
+        <li>
+            <a href="BonafiedCertificateList.html">Bonafied Certificate List</a>
+        </li>
+    </ul>
+
+        <li class="menu-title">Administrator</li>
+        <!-- <li class="submenu-item"><i class="fa fa-users"></i> User Management</li> -->
+
+        <li class="menu-item user-toggle">
+        <i class="fa fa-users"></i> User Management
+        <span class="arrow">▼</span>
+    </li>
+
+    <ul class="submenu user-management">
+        <li>
+            <a href="createUser.html" class="menu-link">Create Enquiry</a>
+        </li>
+
+        <li>
+            <a href="permissionPanel.html">
+                Permission Panel
+            </a>
+        </li>
+    </ul>
+        
+
+        <li class="menu-title">Forgot Password</li>
+        <li class="submenu-item"><i class="fa fa-key"></i> <a href="ForgotPasswprd.html" class="menu-link">Forgot Password </a></li>
+        <li class="submenu-item"><i class="fa fa-phone"></i> Contact Support</li>
+    </ul>
+</div>
+<!-- ================= TOPBAR ================= -->
+<div class="topbar">
+    <div class="left-section">
+        <i class="fa fa-bars menu-toggle" onclick="toggleSidebar()"></i>
+        <div class="academic-year">
+            Academic Year :
+            <select>
+                <option>2026-2027</option>
+                <option>2025-2026</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="right-section">
+        <span>superadmin</span>
+        <i class="fa fa-power-off" id="logoutBtn"></i>
+        <i class="fa fa-cog"></i>
+    </div>
+</div>
+
+<div class="page-content">
+
+<h2 class="page-title">Student Enquiry Form</h2>
+
+<div class="form-card">
+
+<h3 class="card-title">Student Enquiry</h3>
+
+<form id="studentEnquiryForm">
+
+<div class="form-grid">
+
+<!-- =================================-->>
+    
+ <div class="card">
+
+        <h3>List of Student Enquired for Admission</h3>
+
+        <div class="form-row">
+
+            <input type="text" id="studentName" placeholder="Enquired Student Name">
+
+            <input type="text" id="enquiryNo" placeholder="Enquiry No">
+
+        </div>
+
+        <div class="form-row">
+
+            <input type="date" id="fromDate">
+
+            <input type="date" id="toDate">
+
+            <select id="sessionFilter">
+                <option>2024-2025</option>
+                <option>2025-2026</option>
+                <option selected>2026-2027</option>
+            </select>
+
+        </div>
+
+        <!-- <button type="button" onclick="searchEnquiries()">Search</button> -->
+        <button type="button" id="searchBtn">Search</button>
+
+    </div>
+
+
+    <!-- Table -->
+    <div class="card">
+
+        <h3>Student Enquiry List</h3>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>Date</th>
+                    <th>Enquiry No</th>
+                    <th>Student Name</th>
+                    <th>Program</th>
+                    <th>Semester</th>
+                    <th>Contact No</th>
+                    <th>Category</th>
+                    <th>Last School</th>
+                </tr>
+            </thead>
+
+            <tbody id="enquiryTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+<script src="../js/dashboard.js"></script>
+<script src="../js/addmissionEnquiry.js"></script>
+</body>
+</html>
