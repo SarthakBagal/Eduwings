@@ -18,55 +18,95 @@
     <div class="profile">
         <img src="../img/Eduwings_new (1).png" alt="admin">
         <div class="profile-text">
-            <h4>Welcome,<br> superadmin</h4>
+            <h4>Welcome,<br>superadmin</h4>
             <p><span class="online-dot"></span> Online</p>
         </div>
     </div>
 
-
     <ul class="menu">
+
         <li class="menu-item active">
-    <i class="fa fa-home"></i>
-    <a href="dashboard.html" class="menu-link">Dashboard</a>
-    <span class="badge-new">new</span>
-</li>
+            <i class="fa fa-home"></i>
+            <a href="dashboard.html" class="menu-link">Dashboard</a>
+            <span class="badge-new">new</span>
+        </li>
 
         <li class="sidebar-search">
             <input type="text" placeholder="Search...">
             <i class="fas fa-search"></i>
         </li>
 
+        <!-- Marketing -->
         <li class="menu-title">Marketing</li>
-        <li class="submenu-item"><i class="fa fa-bullhorn"></i> Enquiry</li>
 
+        <li class="menu-item enquiry-toggle">
+            <i class="fa fa-bullhorn"></i>
+            <span>Enquiry</span>
+            <span class="arrow">▼</span>
+        </li>
+        <ul class="submenu enquiry-submenu">
+            <li><a href="adminEnquiries.html">Student Enquiry</a></li>
+            <li><a href="addmissionEnquiry.html">List Of Student Enquired For Admission</a></li>
+        </ul>
+
+        <!-- Academics -->
         <li class="menu-title">Academics</li>
-   <li class="submenu-item" id="admissionBtn">
-    <i class="fa fa-user-graduate"></i>
-    <span>Admission</span>
-    <span class="admission-arrow" id="admissionArrow"></span>
-</li>
 
-<ul class="submenu-list" id="admissionMenu">
-    <li><a href="prospectus.html">Prospectus Sale (New)</a></li>
-    <li><a href="report.html">Prospectus Sales Report</a></li>
-    <li><a href="student-admission.html">Student Admission</a></li>
-    <li><a href="search.html">Student Search</a></li>
-    <li><a href="section.html">Student Section Allocation</a></li>
-</ul>
+        <li class="menu-item" id="admissionBtn">
+            <i class="fa fa-user-graduate"></i>
+            <span>Admission</span>
+            <span class="arrow" id="admissionArrow">▼</span>
+        </li>
+        <ul class="submenu-list" id="admissionMenu">
+            <li><a href="prospectus.html">Prospectus Sale (New)</a></li>
+            <li><a href="report.html">Prospectus Sales Report</a></li>
+            <li><a href="student-admission.html">Student Admission</a></li>
+            <li><a href="search.html">Student Search</a></li>
+            <li><a href="section.html">Student Section Allocation</a></li>
+        </ul>
 
-        <li class="submenu-item">
+        <li class="menu-item">
             <i class="fas fa-indian-rupee-sign"></i>
             <a href="fees.html" class="menu-link">Fees</a>
         </li>
 
-        <li class="submenu-item"><i class="fa fa-certificate"></i> Student Certificates</li>
+        <li class="menu-item certificate-toggle">
+            <i class="fa fa-certificate"></i>
+            <span>Student Certificates</span>
+            <span class="arrow">▼</span>
+        </li>
+        <ul class="submenu certificate-submenu">
+            <li><a href="leavingCertificate.html">Leaving Certificate</a></li>
+            <li><a href="leavingCertificateList.html">Leaving Certificate List</a></li>
+            <li><a href="BonafiedCertificate.html">Bonafied Certificate</a></li>
+            <li><a href="BonafiedCertificateList.html">Bonafied Certificate List</a></li>
+        </ul>
 
+        <!-- Administrator -->
         <li class="menu-title">Administrator</li>
-        <li class="submenu-item"><i class="fa fa-users"></i> User Management</li>
 
-        <li class="menu-title">Support</li>
-        <li class="submenu-item"><i class="fa fa-key"></i> Forgot Password</li>
-        <li class="submenu-item"><i class="fa fa-phone"></i> Contact Support</li>
+        <li class="menu-item user-toggle">
+            <i class="fa fa-users"></i>
+            <span>User Management</span>
+            <span class="arrow">▼</span>
+        </li>
+        <ul class="submenu user-management">
+            <li><a href="createUser.html">Create Enquiry</a></li>
+            <li><a href="permissionPanel.html">Permission Panel</a></li>
+        </ul>
+
+        <!-- Others -->
+        <li class="menu-title">Others</li>
+
+        <li class="menu-item">
+            <i class="fa fa-key"></i>
+            <a href="ForgotPasswprd.html" class="menu-link">Forgot Password</a>
+        </li>
+        <li class="menu-item">
+            <i class="fa fa-phone"></i>
+            <a href="Contactsupport.html" class="menu-link">Contact Support</a>
+        </li>
+
     </ul>
 </div>
 
@@ -74,7 +114,7 @@
 <div class="topbar">
     <div class="left-section">
         <div class="academic-year">
-            Academic Year :
+            Academic Year:
             <select>
                 <option>2026-2027</option>
                 <option>2025-2026</option>
@@ -84,8 +124,7 @@
 
     <div class="right-section">
 
-        <!-- NOTIFICATION BELL -->
-        <div class="notification-wrapper">
+        <div class="notification-wrapper" id="notifWrapper">
             <i class="fa fa-bell" id="bellIcon"></i>
             <span class="notify-badge" id="notifyBadge">3</span>
             <div class="notification-dropdown" id="notificationDropdown">
@@ -119,8 +158,7 @@
             </div>
         </div>
 
-        <!-- USER DROPDOWN -->
-        <div class="user-wrapper">
+        <div class="user-wrapper" id="userWrapper">
             <span id="userNameDisplay">superadmin</span>
             <i class="fa fa-power-off" id="powerBtn" title="Logout"></i>
             <div class="user-dropdown" id="userDropdown">

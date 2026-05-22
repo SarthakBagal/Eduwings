@@ -4,10 +4,7 @@
     <meta charset="UTF-8">
     <title>ECampus Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 
@@ -18,33 +15,45 @@
     <div class="profile">
         <img src="../img/Eduwings_new (1).png" alt="admin">
         <div class="profile-text">
-            <h4>Welcome,<br> superadmin</h4>
+            <h4>Welcome,<br>superadmin</h4>
             <p><span class="online-dot"></span> Online</p>
         </div>
     </div>
 
     <ul class="menu">
+
         <li class="menu-item active">
-    <i class="fa fa-home"></i>
-    <a href="dashboard.html" class="menu-link">Dashboard</a>
-    <span class="badge-new">new</span>
-</li>
+            <i class="fa fa-home"></i>
+            <a href="dashboard.html" class="menu-link">Dashboard</a>
+            <span class="badge-new">new</span>
+        </li>
 
         <li class="sidebar-search">
             <input type="text" placeholder="Search...">
             <i class="fas fa-search"></i>
         </li>
 
+        <!-- Marketing -->
         <li class="menu-title">Marketing</li>
-        <li class="submenu-item"><i class="fa fa-bullhorn"></i> Enquiry</li>
 
+        <li class="menu-item enquiry-toggle">
+            <i class="fa fa-bullhorn"></i>
+            <span>Enquiry</span>
+            <span class="arrow">▼</span>
+        </li>
+        <ul class="submenu enquiry-submenu">
+            <li><a href="adminEnquiries.html">Student Enquiry</a></li>
+            <li><a href="addmissionEnquiry.html">List Of Student Enquired For Admission</a></li>
+        </ul>
+
+        <!-- Academics -->
         <li class="menu-title">Academics</li>
-   <li class="submenu-item" id="admissionBtn">
-    <i class="fa fa-user-graduate"></i>
-    <span>Admission</span>
-    <span class="admission-arrow" id="admissionArrow"></span>
-</li>
 
+        <li class="menu-item" id="admissionBtn">
+            <i class="fa fa-user-graduate"></i>
+            <span>Admission</span>
+            <span class="arrow" id="admissionArrow">▼</span>
+        </li>
         <ul class="submenu-list" id="admissionMenu">
             <li><a href="prospectus.html">Prospectus Sale (New)</a></li>
             <li><a href="report.html">Prospectus Sales Report</a></li>
@@ -53,21 +62,48 @@
             <li><a href="section.html">Student Section Allocation</a></li>
         </ul>
 
-        <li class="submenu-item">
+        <li class="menu-item">
             <i class="fas fa-indian-rupee-sign"></i>
             <a href="fees.html" class="menu-link">Fees</a>
         </li>
 
-        <li class="submenu-item">
-            <i class="fa fa-certificate"></i> Student Certificates
+        <li class="menu-item certificate-toggle">
+            <i class="fa fa-certificate"></i>
+            <span>Student Certificates</span>
+            <span class="arrow">▼</span>
+        </li>
+        <ul class="submenu certificate-submenu">
+            <li><a href="leavingCertificate.html">Leaving Certificate</a></li>
+            <li><a href="leavingCertificateList.html">Leaving Certificate List</a></li>
+            <li><a href="BonafiedCertificate.html">Bonafied Certificate</a></li>
+            <li><a href="BonafiedCertificateList.html">Bonafied Certificate List</a></li>
+        </ul>
+
+        <!-- Administrator -->
+        <li class="menu-title">Administrator</li>
+
+        <li class="menu-item user-toggle">
+            <i class="fa fa-users"></i>
+            <span>User Management</span>
+            <span class="arrow">▼</span>
+        </li>
+        <ul class="submenu user-management">
+            <li><a href="createUser.html">Create Enquiry</a></li>
+            <li><a href="permissionPanel.html">Permission Panel</a></li>
+        </ul>
+
+        <!-- Others -->
+        <li class="menu-title">Others</li>
+
+        <li class="menu-item">
+            <i class="fa fa-key"></i>
+            <a href="ForgotPassword.html" class="menu-link">Forgot Password</a>
+        </li>
+        <li class="menu-item">
+            <i class="fa fa-phone"></i>
+            <a href="Contactsupport.html" class="menu-link">Contact Support</a>
         </li>
 
-        <li class="menu-title">Administrator</li>
-        <li class="submenu-item"><i class="fa fa-users"></i> User Management</li>
-
-        <li class="menu-title">Support</li>
-        <li class="submenu-item"><i class="fa fa-key"></i> Forgot Password</li>
-        <li class="submenu-item"><i class="fa fa-phone"></i> Contact Support</li>
     </ul>
 </div>
 
@@ -75,7 +111,7 @@
 <div class="topbar">
     <div class="left-section">
         <div class="academic-year">
-            Academic Year :
+            Academic Year:
             <select>
                 <option>2026-2027</option>
                 <option>2025-2026</option>
@@ -85,12 +121,9 @@
 
     <div class="right-section">
 
-        <!-- NOTIFICATION BELL -->
-        <div class="notification-wrapper">
+        <div class="notification-wrapper" id="notifWrapper">
             <i class="fa fa-bell" id="bellIcon"></i>
             <span class="notify-badge" id="notifyBadge">3</span>
-
-            <!-- NOTIFICATION DROPDOWN -->
             <div class="notification-dropdown" id="notificationDropdown">
                 <div class="notification-header">
                     <span>Notifications</span>
@@ -122,13 +155,9 @@
             </div>
         </div>
 
-
-        <!-- USER DROPDOWN -->
-        <div class="user-wrapper">
+        <div class="user-wrapper" id="userWrapper">
             <span id="userNameDisplay">superadmin</span>
             <i class="fa fa-power-off" id="powerBtn" title="Logout"></i>
-
-            <!-- USER DROPDOWN MENU -->
             <div class="user-dropdown" id="userDropdown">
                 <div class="user-dropdown-item logout-item" id="logoutBtn">
                     <i class="fa fa-sign-out-alt"></i> Logout
@@ -143,9 +172,7 @@
 <div class="main-content">
     <h1>Dashboard</h1>
 
-    <!-- TOP CARDS -->
     <div class="cards">
-
         <div class="card blue">
             <div class="card-content">
                 <h2>53</h2>
@@ -155,7 +182,6 @@
                 <i class="fas fa-user-graduate"></i>
             </div>
         </div>
-
         <div class="card green">
             <div class="card-content">
                 <h2>40</h2>
@@ -165,7 +191,6 @@
                 <i class="fas fa-bullhorn"></i>
             </div>
         </div>
-
         <div class="card orange">
             <div class="card-content">
                 <h2>₹ 1,25,000</h2>
@@ -175,7 +200,6 @@
                 <i class="fas fa-indian-rupee-sign"></i>
             </div>
         </div>
-
         <div class="card red">
             <div class="card-content">
                 <h2>120</h2>
@@ -185,28 +209,19 @@
                 <i class="fas fa-users"></i>
             </div>
         </div>
-
     </div>
 
-    <!-- MIDDLE SECTION -->
     <div class="middle-section">
 
-        <!-- LEFT -->
         <div class="side-cards">
             <div class="small-card azure" id="studentSearchCard">
                 <div>Student Search</div>
-                <div class="card-badge">
-                    More Info <i class="fas fa-arrow-circle-right"></i>
-                </div>
+                <div class="card-badge">More Info <i class="fas fa-arrow-circle-right"></i></div>
             </div>
-
             <div class="small-card teal">
                 <div>Daily Attendance</div>
-                <div class="card-badge">
-                    More Info <i class="fas fa-arrow-circle-right"></i>
-                </div>
+                <div class="card-badge">More Info <i class="fas fa-arrow-circle-right"></i></div>
             </div>
-
             <div class="download-btn-container-left">
                 <button class="download-btn" id="downloadBackupBtn">
                     <i class="fas fa-download"></i> Download Database Backup
@@ -214,36 +229,29 @@
             </div>
         </div>
 
-        <!-- CENTER -->
         <div class="center-banner">
-            <img src="../img/logo.banner.png" alt="banner">
+            <img src="../img/logo.banner.png" alt="ECampus Banner">
         </div>
 
-        <!-- RIGHT -->
         <div class="side-cards">
             <div class="small-card pink" id="addStudentCard">
                 <div>Add New Student</div>
-                <div class="card-badge">
-                    More Info <i class="fas fa-arrow-circle-right"></i>
-                </div>
+                <div class="card-badge">More Info <i class="fas fa-arrow-circle-right"></i></div>
             </div>
-
             <div class="small-card purple" id="createUserCard">
                 <div>Create User</div>
-                <div class="card-badge">
-                    More Info <i class="fas fa-arrow-circle-right"></i>
-                </div>
+                <div class="card-badge">More Info <i class="fas fa-arrow-circle-right"></i></div>
             </div>
         </div>
 
     </div>
 
     <div class="footer">
-        Copyright © E Campus by India Active Software Inc 2026.
+        Copyright &copy; E Campus by India Active Software Inc 2026.
     </div>
-
 </div>
 
+<!-- Load dashboard.js only — no inline script -->
 <script src="../js/dashboard.js"></script>
 
 </body>

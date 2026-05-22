@@ -20,18 +20,46 @@ window.addEventListener("DOMContentLoaded", async () => {
         return;
     }
 
-// ── ADMISSION DROPDOWN ────────────────────────────────────
-const admissionBtn = document.getElementById("admissionBtn");
-const admissionMenu = document.getElementById("admissionMenu");
-const admissionArrow = document.getElementById("admissionArrow");
+    // ── SUBMENU TOGGLES ───────────────────────────────────────
 
-if (admissionBtn && admissionMenu) {
-    admissionBtn.addEventListener("click", function (e) {
-        e.stopPropagation();
-        admissionMenu.classList.toggle("show");
-        if (admissionArrow) admissionArrow.classList.toggle("rotate");
-    });
-}
+    // Enquiry submenu
+    const enquiryToggle = document.querySelector(".enquiry-toggle");
+    const enquirySubmenu = document.querySelector(".enquiry-submenu");
+    if (enquiryToggle && enquirySubmenu) {
+        enquiryToggle.addEventListener("click", () => {
+            enquirySubmenu.classList.toggle("open");
+        });
+    }
+
+    // Admission submenu
+    const admissionBtn = document.getElementById("admissionBtn");
+    const admissionMenu = document.getElementById("admissionMenu");
+    const admissionArrow = document.getElementById("admissionArrow");
+    if (admissionBtn && admissionMenu) {
+        admissionBtn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            admissionMenu.classList.toggle("open");
+            if (admissionArrow) admissionArrow.classList.toggle("rotate");
+        });
+    }
+
+    // Certificate submenu
+    const certificateToggle = document.querySelector(".certificate-toggle");
+    const certificateSubmenu = document.querySelector(".certificate-submenu");
+    if (certificateToggle && certificateSubmenu) {
+        certificateToggle.addEventListener("click", () => {
+            certificateSubmenu.classList.toggle("open");
+        });
+    }
+
+    // User Management submenu
+    const userToggle = document.querySelector(".user-toggle");
+    const userManagement = document.querySelector(".user-management");
+    if (userToggle && userManagement) {
+        userToggle.addEventListener("click", () => {
+            userManagement.classList.toggle("open");
+        });
+    }
 
     // ── SIDEBAR TOGGLE ────────────────────────────────────────
     const menuToggle = document.getElementById("menuToggle");
@@ -47,20 +75,13 @@ if (admissionBtn && admissionMenu) {
     const powerBtn = document.getElementById("powerBtn");
     const logoutBtn = document.getElementById("logoutBtn");
 
-    // Bell click
-    if (bellIcon) {
-        bellIcon.addEventListener("click", function (e) {
-            e.stopPropagation();
-            notificationDropdown.classList.toggle("show");
-            if (userDropdown) userDropdown.classList.remove("show");
-        });
-    }
-
-    // Notification wrapper click (stop bubbling)
-    const notifWrapper = document.querySelector(".notification-wrapper");
+    // Bell / notif wrapper click
+    const notifWrapper = document.getElementById("notifWrapper");
     if (notifWrapper) {
         notifWrapper.addEventListener("click", function (e) {
             e.stopPropagation();
+            notificationDropdown.classList.toggle("show");
+            if (userDropdown) userDropdown.classList.remove("show");
         });
     }
 
@@ -77,19 +98,12 @@ if (admissionBtn && admissionMenu) {
     }
 
     // ── USER DROPDOWN ─────────────────────────────────────────
-    if (powerBtn) {
-        powerBtn.addEventListener("click", function (e) {
-            e.stopPropagation();
-            userDropdown.classList.toggle("show");
-            if (notificationDropdown) notificationDropdown.classList.remove("show");
-        });
-    }
-
-    // User wrapper click (stop bubbling)
-    const userWrapper = document.querySelector(".user-wrapper");
+    const userWrapper = document.getElementById("userWrapper");
     if (userWrapper) {
         userWrapper.addEventListener("click", function (e) {
             e.stopPropagation();
+            userDropdown.classList.toggle("show");
+            if (notificationDropdown) notificationDropdown.classList.remove("show");
         });
     }
 
@@ -137,20 +151,18 @@ if (admissionBtn && admissionMenu) {
     const createUserCard = document.getElementById("createUserCard");
     if (createUserCard) {
         createUserCard.addEventListener("click", () => {
-            window.location.href = "user-management.html";
+            window.location.href = "createUser.html";
         });
     }
 
-    // ── GENERIC MENU HEADERS ──────────────────────────────────
-    document.querySelectorAll(".menu-header").forEach(header => {
-        header.addEventListener("click", function () {
-            const menuItem = this.parentElement;
-            document.querySelectorAll(".menu-item").forEach(item => {
-                if (item !== menuItem) item.classList.remove("open");
-            });
-            menuItem.classList.toggle("open");
+    // ── DOWNLOAD BACKUP ───────────────────────────────────────
+    const downloadBackupBtn = document.getElementById("downloadBackupBtn");
+    if (downloadBackupBtn) {
+        downloadBackupBtn.addEventListener("click", () => {
+            alert("Database backup download started!");
+            // Add your backup download logic here
         });
-    });
+    }
 
 });
 
