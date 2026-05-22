@@ -1,25 +1,5 @@
 window.addEventListener("DOMContentLoaded", async () => {
 
-    // ── AUTH CHECK ───────────────────────────────────────────
-    try {
-        const res = await fetch("http://localhost:5000/api/users/profile", {
-            method: "GET",
-            credentials: "include"
-        });
-
-        if (!res.ok) {
-            window.location.href = "../views/login.html";
-            return;
-        }
-
-        const data = await res.json();
-        console.log("User data:", data);
-
-    } catch (error) {
-        window.location.href = "../views/login.html";
-        return;
-    }
-
     // ── SUBMENU TOGGLES ───────────────────────────────────────
 
     // Enquiry submenu
@@ -68,14 +48,11 @@ window.addEventListener("DOMContentLoaded", async () => {
     }
 
     // ── NOTIFICATION BELL ─────────────────────────────────────
-    const bellIcon = document.getElementById("bellIcon");
     const notificationDropdown = document.getElementById("notificationDropdown");
     const markAllRead = document.getElementById("markAllRead");
     const userDropdown = document.getElementById("userDropdown");
-    const powerBtn = document.getElementById("powerBtn");
     const logoutBtn = document.getElementById("logoutBtn");
 
-    // Bell / notif wrapper click
     const notifWrapper = document.getElementById("notifWrapper");
     if (notifWrapper) {
         notifWrapper.addEventListener("click", function (e) {
@@ -160,8 +137,23 @@ window.addEventListener("DOMContentLoaded", async () => {
     if (downloadBackupBtn) {
         downloadBackupBtn.addEventListener("click", () => {
             alert("Database backup download started!");
-            // Add your backup download logic here
         });
+    }
+
+    // ── AUTH CHECK (runs last so UI always loads) ─────────────
+    try {
+        const res = await fetch("http://localhost:5000/api/users/profile", {
+            method: "GET",
+            credentials: "include"
+        });
+        if (!res.ok) {
+            window.location.href = "../views/login.html";
+            return;
+        }
+        const data = await res.json();
+        console.log("User data:", data);
+    } catch (error) {
+        window.location.href = "../views/login.html";
     }
 
 });

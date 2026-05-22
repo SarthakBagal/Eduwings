@@ -34,7 +34,7 @@ if (form) {
             return;
         }
 
-        fetch("http://localhost:5000/api/ProspectusSale", { // ✅ FIXED
+        fetch("http://localhost:5000/api/ProspectusSale", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -58,7 +58,7 @@ if (form) {
 const searchForm = document.getElementById("searchForm");
 const salesTableBody = document.getElementById("salesTableBody");
 const tableContainer = document.getElementById("tableContainer");
-const exportBtns = document.getElementById("exportBtns");
+const exportBtns = document.querySelector(".export-btns");
 
 if (searchForm) {
     searchForm.addEventListener("submit", function(e) {
@@ -80,7 +80,7 @@ if (searchForm) {
         if (semester) params.append("semester", semester);
         if (session) params.append("session", session);
 
-        fetch(`http://localhost:5000/api/ProspectusSale/search?${params.toString()}`) // ✅ FIXED
+        fetch(`http://localhost:5000/api/ProspectusSale/search?${params.toString()}`)
             .then(res => res.json())
             .then(data => {
 
@@ -89,7 +89,7 @@ if (searchForm) {
                 if (data.length === 0) {
                     salesTableBody.innerHTML = `<tr><td colspan="8">No records found</td></tr>`;
                     tableContainer.style.display = "block";
-                    exportBtns.style.display = "none";
+                    if (exportBtns) exportBtns.style.display = "none";
                     return;
                 }
 
@@ -109,7 +109,7 @@ if (searchForm) {
                 });
 
                 tableContainer.style.display = "block";
-                exportBtns.style.display = "flex";
+                if (exportBtns) exportBtns.style.display = "flex";
             })
             .catch(err => {
                 console.error(err);

@@ -1,33 +1,9 @@
-.submenu-list {
-    display: none;
-    list-style: none;
-    padding-left: 25px;
-}
-
-.submenu-list li {
-    padding: 6px 0;
-}
-
-.submenu-list li a {
-    text-decoration: none;
-    color: #bbb;
-    font-size: 13px;
-}
-
-.submenu-list li a:hover {
-    color: #fff;
-}
-
-/* Show */
-.submenu-list.active {
-    display: block;
-}
-
-/* Container */
+/* ================= FORM CONTAINER ================= */
 .form-container {
     background: #fff;
     padding: 20px;
     border-radius: 6px;
+    margin-bottom: 25px;
 }
 
 /* Title */
@@ -124,11 +100,11 @@ textarea {
 
 .btn.export { padding: 7px 16px; font-size: 13px; }
 
-.copy-btn { background: #343a40; color: #fff; }
-.copy-btn:hover { background: #23272b; }
+.copy-btn  { background: #343a40; color: #fff; }
+.copy-btn:hover  { background: #23272b; }
 
-.csv-btn { background: #343a40; color: #fff; }
-.csv-btn:hover { background: #23272b; }
+.csv-btn   { background: #343a40; color: #fff; }
+.csv-btn:hover   { background: #23272b; }
 
 .excel-btn { background: #343a40; color: #fff; }
 .excel-btn:hover { background: #23272b; }
