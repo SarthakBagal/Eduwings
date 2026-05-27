@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
  
   const API = "http://localhost:5000/api/createUsers"
-  const ALL_PERMS = ["Admission", "Fees", "Certificates", "User Management", "Administrator"]
+  const ALL_PERMS = ["Admission", "Fees", "Certificates", "User Management"]
  
  
   // ── Modal elements ────────────────────────────────────────
