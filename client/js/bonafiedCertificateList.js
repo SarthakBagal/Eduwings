@@ -5,25 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let allRecords  = []
   let filtered    = []
-  let currentPage = 1;
-
-  // ── Sidebar toggles ───────────────────────────────────────
-  // ;[
-  //   [".enquiry-toggle", ".enquiry-submenu"],
-  //   [".cert-toggle",    ".cert-submenu"],
-  //   [".user-toggle",    ".user-management"],
-  // ].forEach(([btnSel, subSel]) => {
-  //   const btn = document.querySelector(btnSel)
-  //   const sub = document.querySelector(subSel)
-  //   if (btn && sub) btn.addEventListener("click", () => sub.classList.toggle("show"))
-  // })
-
-  // const sidebarToggle = document.getElementById("sidebarToggle")
-  // if (sidebarToggle) {
-  //   sidebarToggle.addEventListener("click", () =>
-  //     document.body.classList.toggle("collapsed")
-  //   )
-  // }
+  let currentPage = 1
 
   // ── Toast ─────────────────────────────────────────────────
   function showToast(text, type) {
@@ -48,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const slice = records.slice(start, end)
 
     if (!records.length) {
-      tbody.innerHTML = `<tr><td colspan="7" class="table-msg">No records found.</td></tr>`
+      tbody.innerHTML = `<tr><td colspan="8" class="table-msg">No records found.</td></tr>`
       document.getElementById("showingText").textContent = ""
       document.getElementById("pagination").innerHTML   = ""
       return
@@ -57,24 +39,25 @@ document.addEventListener("DOMContentLoaded", function () {
     tbody.innerHTML = slice.map((cert, i) => `
       <tr>
         <td>${start + i + 1}</td>
-        <td>${cert.regId       || "—"}</td>
-        <td>${cert.studentName || "—"}</td>
-        <td>${cert.section     || "—"}</td>
-        <td>${cert.category    || "—"}</td>
-        <td>${cert.contactNo   || "—"}</td>
+        <td>${cert.regNo        || "—"}</td>
+        <td>${cert.studentName  || "—"}</td>
+        <td>${cert.section      || "—"}</td>
+        <td>${cert.category     || "—"}</td>
+        <td>${cert.contactNo    || "—"}</td>
+        <td>${formatDate(cert.dateOfLeaving)}</td>
         <td>
           <button class="btn-print"   data-id="${cert._id}">Print</button>
-          <button class="btn-edit-bc" data-id="${cert._id}">Edit</button>
+          <span class="or-text">OR</span>
+          <button class="btn-edit-lc" data-id="${cert._id}">Edit L.C</button>
         </td>
       </tr>
     `).join("")
 
-    // Attach button events
     tbody.querySelectorAll(".btn-print").forEach(btn =>
-      btn.addEventListener("click", () => printBC(btn.dataset.id))
+      btn.addEventListener("click", () => printLC(btn.dataset.id))
     )
-    tbody.querySelectorAll(".btn-edit-bc").forEach(btn =>
-      btn.addEventListener("click", () => editBC(btn.dataset.id))
+    tbody.querySelectorAll(".btn-edit-lc").forEach(btn =>
+      btn.addEventListener("click", () => editLC(btn.dataset.id))
     )
 
     document.getElementById("showingText").textContent =
@@ -110,30 +93,29 @@ document.addEventListener("DOMContentLoaded", function () {
     })
   }
 
-  // ── Fetch from backend ────────────────────────────────────
+  // ── Fetch records ─────────────────────────────────────────
   async function fetchRecords() {
-    const className = document.getElementById("filterClass").value
-    const session   = document.getElementById("filterSession").value
-    const category  = document.getElementById("filterCategory").value
-    const semester  = document.getElementById("filterSemester").value
+    const studentName = document.getElementById("filterStudentName").value.trim()
+    const regNo       = document.getElementById("filterRegNo").value.trim()
+    const session     = document.getElementById("filterSession").value
+    const category    = document.getElementById("filterCategory").value
 
     const params = new URLSearchParams()
-    if (className) params.append("className", className)
-    if (session)   params.append("session",   session)
-    if (category)  params.append("category",  category)
-    if (semester)  params.append("semester",  semester)
+    if (studentName) params.append("studentName", studentName)
+    if (regNo)       params.append("regNo",       regNo)
+    if (session)     params.append("session",     session)
+    if (category)    params.append("category",    category)
 
     document.getElementById("tableBody").innerHTML =
-      `<tr><td colspan="7" class="table-msg">
+      `<tr><td colspan="8" class="table-msg">
         <i class="fas fa-spinner fa-spin"></i> Loading...
       </td></tr>`
 
     try {
-      const res = await fetch(`${API}/bonafied-certificate?${params.toString()}`)
+      const res = await fetch(`${API}/leaving-certificate?${params.toString()}`)
       if (!res.ok) throw new Error(`Server error: ${res.status}`)
 
       const data = await res.json()
-
       allRecords  = data
       filtered    = data
       currentPage = 1
@@ -143,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } catch (err) {
       console.error("fetchRecords error:", err)
       document.getElementById("tableBody").innerHTML =
-        `<tr><td colspan="7" class="table-msg" style="color:#c0392b">
+        `<tr><td colspan="8" class="table-msg" style="color:#c0392b">
           Failed to load. Is backend running?<br>
           <small>${err.message}</small>
         </td></tr>`
@@ -153,12 +135,20 @@ document.addEventListener("DOMContentLoaded", function () {
   // ── Search button ─────────────────────────────────────────
   document.getElementById("searchBtn").addEventListener("click", fetchRecords)
 
-  // ── Inline table search (client-side) ─────────────────────
+  // ── Enter key triggers search ─────────────────────────────
+  ;["filterStudentName", "filterRegNo"].forEach(id => {
+    document.getElementById(id).addEventListener("keydown", e => {
+      if (e.key === "Enter") fetchRecords()
+    })
+  })
+
+  // ── Inline table search ───────────────────────────────────
   document.getElementById("tableSearch").addEventListener("input", function () {
     const q = this.value.toLowerCase()
     filtered = allRecords.filter(c =>
       (c.studentName || "").toLowerCase().includes(q) ||
-      (c.regId       || "").toLowerCase().includes(q) ||
+      (c.studentId   || "").toLowerCase().includes(q) ||
+      (c.regNo       || "").toLowerCase().includes(q) ||
       (c.section     || "").toLowerCase().includes(q) ||
       (c.category    || "").toLowerCase().includes(q) ||
       (c.contactNo   || "").toLowerCase().includes(q)
@@ -171,8 +161,8 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("copyBtn").addEventListener("click", () => {
     if (!allRecords.length) return showToast("No data to copy.", "error")
     const rows = allRecords.map((c, i) =>
-      [i+1, c.regId, c.studentName, c.section,
-       c.category, c.contactNo].join("\t")
+      [i+1, c.regNo, c.studentName, c.section,
+       c.category, c.contactNo, formatDate(c.dateOfLeaving)].join("\t")
     ).join("\n")
     navigator.clipboard.writeText(rows)
       .then(() => showToast("Copied to clipboard!", "success"))
@@ -181,34 +171,43 @@ document.addEventListener("DOMContentLoaded", function () {
   // ── Export: CSV ───────────────────────────────────────────
   document.getElementById("csvBtn").addEventListener("click", () => {
     if (!allRecords.length) return showToast("No data to export.", "error")
-    const header = "Sr No,Student Id,Student Name,Section,Category,Contact No"
+    const header = "Sr No,Reg No,Student Name,Section,Category,Contact No,Issue Date"
     const rows   = allRecords.map((c, i) =>
-      [i+1, c.regId, c.studentName, c.section,
-       c.category, c.contactNo].join(",")
+      [i+1, c.regNo, c.studentName, c.section,
+       c.category, c.contactNo, formatDate(c.dateOfLeaving)].join(",")
     ).join("\n")
     const blob = new Blob([header + "\n" + rows], { type: "text/csv" })
     const url  = URL.createObjectURL(blob)
     const a    = document.createElement("a")
-    a.href = url
-    a.download = "bonafied_certificate_list.csv"
+    a.href     = url
+    a.download = "leaving_certificate_list.csv"
     a.click()
     URL.revokeObjectURL(url)
+    showToast("CSV downloaded!", "success")
   })
 
   // ── Export: Print ─────────────────────────────────────────
-  document.getElementById("printBtn").addEventListener("click", () => window.print())
+  document.getElementById("printBtn").addEventListener("click", () => {
+    if (!allRecords.length) return showToast("No data to print.", "error")
+    window.print()
+  })
 
-  // ── Print single ──────────────────────────────────────────
-  function printBC(id) {
-    window.open(`printBC.html?id=${id}`, "_blank")
+  // ── Excel button placeholder ──────────────────────────────
+  document.getElementById("excelBtn").addEventListener("click", () => {
+    showToast("Excel export coming soon!", "success")
+  })
+
+  // ── Print single LC ───────────────────────────────────────
+  function printLC(id) {
+    window.open(`printLC.html?id=${id}`, "_blank")
   }
 
-  // ── Edit → go to form with id ─────────────────────────────
-  function editBC(id) {
-    window.location.href = `bonafiedCertificate.html?edit=${id}`
+  // ── Edit LC ───────────────────────────────────────────────
+  function editLC(id) {
+    window.location.href = `leavingCertificate.html?edit=${id}`
   }
 
-  // ── Load all on page open ─────────────────────────────────
+  // ── Load on page open ─────────────────────────────────────
   fetchRecords()
 
 })

@@ -5,10 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let allRecords  = []
   let filtered    = []
-  let currentPage = 1;
-
-  // ── Sidebar toggles ───────────────────────────────────────
-  // ;
+  let currentPage = 1
 
   // ── Toast ─────────────────────────────────────────────────
   function showToast(text, type) {
@@ -19,10 +16,34 @@ document.addEventListener("DOMContentLoaded", function () {
     setTimeout(() => (t.style.display = "none"), 3500)
   }
 
-  // ── Format date to YYYY-MM-DD ─────────────────────────────
+  // ── Format date ───────────────────────────────────────────
   function formatDate(dateStr) {
     if (!dateStr) return "—"
     return new Date(dateStr).toISOString().split("T")[0]
+  }
+
+  // ── Attach row button events ──────────────────────────────
+  function attachRowEvents() {
+    document.querySelectorAll(".btn-print").forEach(btn => {
+      btn.removeEventListener("click", handlePrint)
+      btn.addEventListener("click", handlePrint)
+    })
+    document.querySelectorAll(".btn-edit-lc").forEach(btn => {
+      btn.removeEventListener("click", handleEdit)
+      btn.addEventListener("click", handleEdit)
+    })
+  }
+
+  function handlePrint(e) {
+    const id = e.currentTarget.dataset.id
+    if (!id) return showToast("Invalid record ID", "error")
+    window.open(`printLC.html?id=${id}`, "_blank")
+  }
+
+  function handleEdit(e) {
+    const id = e.currentTarget.dataset.id
+    if (!id) return showToast("Invalid record ID", "error")
+    window.location.href = `leavingCertificate.html?edit=${id}`
   }
 
   // ── Render table ──────────────────────────────────────────
@@ -42,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
     tbody.innerHTML = slice.map((cert, i) => `
       <tr>
         <td>${start + i + 1}</td>
-        <td>${cert.regNo || "—"}</td>
+        <td>${cert.regNo       || "—"}</td>
         <td>${cert.studentName || "—"}</td>
         <td>${cert.section     || "—"}</td>
         <td>${cert.category    || "—"}</td>
@@ -56,13 +77,8 @@ document.addEventListener("DOMContentLoaded", function () {
       </tr>
     `).join("")
 
-    // Attach button events after rendering
-    tbody.querySelectorAll(".btn-print").forEach(btn =>
-      btn.addEventListener("click", () => printLC(btn.dataset.id))
-    )
-    tbody.querySelectorAll(".btn-edit-lc").forEach(btn =>
-      btn.addEventListener("click", () => editLC(btn.dataset.id))
-    )
+    // Attach events after rendering
+    attachRowEvents()
 
     document.getElementById("showingText").textContent =
       `Showing ${start + 1} to ${Math.min(end, records.length)} of ${records.length} entries`
@@ -120,9 +136,8 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!res.ok) throw new Error(`Server error: ${res.status}`)
 
       const data = await res.json()
-
-      allRecords  = data
-      filtered    = data
+      allRecords  = Array.isArray(data) ? data : []
+      filtered    = allRecords
       currentPage = 1
       document.getElementById("tableSearch").value = ""
       renderTable(filtered, currentPage)
@@ -140,19 +155,18 @@ document.addEventListener("DOMContentLoaded", function () {
   // ── Search button ─────────────────────────────────────────
   document.getElementById("searchBtn").addEventListener("click", fetchRecords)
 
-  // ── Press Enter in text inputs to trigger search ──────────
+  // ── Enter key triggers search ─────────────────────────────
   ;["filterStudentName", "filterRegNo"].forEach(id => {
     document.getElementById(id).addEventListener("keydown", e => {
       if (e.key === "Enter") fetchRecords()
     })
   })
 
-  // ── Inline table search (client-side) ─────────────────────
+  // ── Inline table search ───────────────────────────────────
   document.getElementById("tableSearch").addEventListener("input", function () {
     const q = this.value.toLowerCase()
     filtered = allRecords.filter(c =>
       (c.studentName || "").toLowerCase().includes(q) ||
-      (c.studentId   || "").toLowerCase().includes(q) ||
       (c.regNo       || "").toLowerCase().includes(q) ||
       (c.section     || "").toLowerCase().includes(q) ||
       (c.category    || "").toLowerCase().includes(q) ||
@@ -166,44 +180,44 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("copyBtn").addEventListener("click", () => {
     if (!allRecords.length) return showToast("No data to copy.", "error")
     const rows = allRecords.map((c, i) =>
-      [i+1, c.studentId, c.studentName, c.section,
+      [i+1, c.regNo, c.studentName, c.section,
        c.category, c.contactNo, formatDate(c.dateOfLeaving)].join("\t")
     ).join("\n")
     navigator.clipboard.writeText(rows)
       .then(() => showToast("Copied to clipboard!", "success"))
+      .catch(() => showToast("Copy failed!", "error"))
   })
 
   // ── Export: CSV ───────────────────────────────────────────
   document.getElementById("csvBtn").addEventListener("click", () => {
     if (!allRecords.length) return showToast("No data to export.", "error")
-    const header = "Sr No,Student Id,Student Name,Section,Category,Contact No,Issue Date"
+    const header = "Sr No,Reg No,Student Name,Section,Category,Contact No,Issue Date"
     const rows   = allRecords.map((c, i) =>
-      [i+1, c.studentId, c.studentName, c.section,
+      [i+1, c.regNo, c.studentName, c.section,
        c.category, c.contactNo, formatDate(c.dateOfLeaving)].join(",")
     ).join("\n")
     const blob = new Blob([header + "\n" + rows], { type: "text/csv" })
     const url  = URL.createObjectURL(blob)
     const a    = document.createElement("a")
-    a.href = url
+    a.href     = url
     a.download = "leaving_certificate_list.csv"
     a.click()
     URL.revokeObjectURL(url)
+    showToast("CSV downloaded!", "success")
+  })
+
+  // ── Export: Excel ─────────────────────────────────────────
+  document.getElementById("excelBtn").addEventListener("click", () => {
+    showToast("Excel export coming soon!", "success")
   })
 
   // ── Export: Print ─────────────────────────────────────────
-  document.getElementById("printBtn").addEventListener("click", () => window.print())
+  document.getElementById("printBtn").addEventListener("click", () => {
+    if (!allRecords.length) return showToast("No data to print.", "error")
+    window.print()
+  })
 
-  // ── Print single LC ───────────────────────────────────────
-  function printLC(id) {
-    window.open(`printLC.html?id=${id}`, "_blank")
-  }
-
-  // ── Edit LC ───────────────────────────────────────────────
-  function editLC(id) {
-    window.location.href = `leavingCertificate.html?edit=${id}`
-  }
-
-  // ── Load all records on page open ─────────────────────────
+  // ── Load on page open ─────────────────────────────────────
   fetchRecords()
 
 })

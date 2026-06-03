@@ -88,7 +88,7 @@
             <span class="arrow">▼</span>
         </li>
         <ul class="submenu user-management">
-          <li><a href="createUser.html">Create User</a></li>
+            <li><a href="createUser.html">Create User</a></li>
             <li><a href="permissionPanel.html">Permission Panel</a></li>
         </ul>
 
@@ -97,7 +97,7 @@
 
         <li class="menu-item">
             <i class="fa fa-key"></i>
-            <a href="ForgotPasswprd.html" class="menu-link">Forgot Password</a>
+            <a href="forgotPassword.html" class="menu-link">Forgot Password</a>
         </li>
         <li class="menu-item">
             <i class="fa fa-phone"></i>
@@ -168,115 +168,116 @@
     </div>
 </div>
 
-  <!-- ===== MAIN CONTENT ===== -->
-  <div class="main-content">
+<!-- ===== MAIN CONTENT ===== -->
+<div class="main-content">
 
-    <!-- ── Filter Panel ── -->
+    <!-- Filter Panel -->
     <div class="panel">
-      <div class="panel-header">
-        <span class="panel-title">Leaving Certificate List</span>
-        <div class="panel-controls"><span>&#8722;</span><span>&#10005;</span></div>
-      </div>
-      <div class="panel-body">
+        <div class="panel-header">
+            <span class="panel-title">Leaving Certificate List</span>
+            <div class="panel-controls">
+                <span>&#8722;</span>
+                <span>&#10005;</span>
+            </div>
+        </div>
+        <div class="panel-body">
 
-        <div class="filter-row">
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label>Student Name</label>
+                    <input type="text" id="filterStudentName" placeholder="Enter student name"/>
+                </div>
+                <div class="filter-group">
+                    <label>Reg. No</label>
+                    <input type="text" id="filterRegNo" placeholder="Enter reg. no"/>
+                </div>
+                <div class="filter-group">
+                    <label>Session</label>
+                    <select id="filterSession">
+                        <option value="">Select Here</option>
+                        <option value="2026-2027">2026-2027</option>
+                        <option value="2025-2026">2025-2026</option>
+                        <option value="2024-2025">2024-2025</option>
+                        <option value="2023-2024">2023-2024</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Category</label>
+                    <select id="filterCategory">
+                        <option value="">Select Here</option>
+                        <option value="General">General</option>
+                        <option value="OBC">OBC</option>
+                        <option value="SC">SC</option>
+                        <option value="ST">ST</option>
+                    </select>
+                </div>
+            </div>
 
-          <div class="filter-group">
-            <label>Student Name</label>
-            <input type="text" id="filterStudentName" placeholder="Enter student name"/>
-          </div>
-
-          <div class="filter-group">
-            <label>Reg. No</label>
-            <input type="text" id="filterRegNo" placeholder="Enter reg. no"/>
-          </div>
-
-          <div class="filter-group">
-            <label>Session</label>
-            <select id="filterSession">
-              <option value="">Select Here</option>
-              <option value="2026-2027">2026-2027</option>
-              <option value="2025-2026">2025-2026</option>
-              <option value="2024-2025">2024-2025</option>
-              <option value="2023-2024">2023-2024</option>
-            </select>
-          </div>
-
-          <div class="filter-group">
-            <label>Category</label>
-            <select id="filterCategory">
-              <option value="">Select Here</option>
-              <option value="General">General</option>
-              <option value="OBC">OBC</option>
-              <option value="SC">SC</option>
-              <option value="ST">ST</option>
-            </select>
-          </div>
+            <div class="search-btn-wrap">
+                <button id="searchBtn">Search</button>
+            </div>
 
         </div>
-
-        <div class="search-btn-wrap">
-          <button id="searchBtn">Search</button>
-        </div>
-
-      </div>
     </div>
 
-    <!-- ── Table Panel ── -->
+    <!-- Table Panel -->
     <div class="panel">
-      <div class="panel-header">
-        <span class="panel-title">Leaving Certificate List</span>
-        <div class="panel-controls"><span>&#8722;</span><span>&#10005;</span></div>
-      </div>
-      <div class="panel-body">
-
-        <div class="table-toolbar">
-          <div class="export-btns">
-            <button id="copyBtn">Copy</button>
-            <button id="csvBtn">CSV</button>
-            <button id="excelBtn">Excel</button>
-            <button id="printBtn">Print</button>
-          </div>
-          <div class="table-search">
-            Search: <input type="text" id="tableSearch"/>
-          </div>
+        <div class="panel-header">
+            <span class="panel-title">Leaving Certificate List</span>
+            <div class="panel-controls">
+                <span>&#8722;</span>
+                <span>&#10005;</span>
+            </div>
         </div>
+        <div class="panel-body">
 
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Sr No <span class="si">⇅</span></th>
-                <th>Student Reg. No <span class="si">⇅</span></th>
-                <th>Student Name <span class="si">⇅</span></th>
-                <th>Section <span class="si">⇅</span></th>
-                <th>Category <span class="si">⇅</span></th>
-                <th>Contact No <span class="si">⇅</span></th>
-                <th>Issue Date <span class="si">⇅</span></th>
-                <th>Print &amp; Edit L.C <span class="si">⇅</span></th>
-              </tr>
-            </thead>
-            <tbody id="tableBody">
-              <tr>
-                <td colspan="8" class="table-msg">Click Search to load records.</td>
-              </tr>
-            </tbody>
-          </table>
+            <div class="table-toolbar">
+                <div class="export-btns">
+                    <button id="copyBtn">Copy</button>
+                    <button id="csvBtn">CSV</button>
+                    <button id="excelBtn">Excel</button>
+                    <button id="printBtn">Print</button>
+                </div>
+                <div class="table-search">
+                    Search: <input type="text" id="tableSearch"/>
+                </div>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sr No <span class="si">⇅</span></th>
+                            <th>Student Reg. No <span class="si">⇅</span></th>
+                            <th>Student Name <span class="si">⇅</span></th>
+                            <th>Section <span class="si">⇅</span></th>
+                            <th>Category <span class="si">⇅</span></th>
+                            <th>Contact No <span class="si">⇅</span></th>
+                            <th>Issue Date <span class="si">⇅</span></th>
+                            <th>Print &amp; Edit L.C <span class="si">⇅</span></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <tr>
+                            <td colspan="8" class="table-msg">Click Search to load records.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="table-footer">
+                <span id="showingText"></span>
+                <div class="pagination" id="pagination"></div>
+            </div>
+
         </div>
-
-        <div class="table-footer">
-          <span id="showingText"></span>
-          <div class="pagination" id="pagination"></div>
-        </div>
-
-      </div>
     </div>
 
-  </div>
+</div>
 
-  <div id="toast"></div>
+<div id="toast"></div>
 
-  <script src="../js/dashboard.js"></script>
-  <script src="../js/leavingCertificateList.js"></script>
+<script src="../js/dashboard.js"></script>
+<script src="../js/leavingCertificateList.js"></script>
 </body>
 </html>
